@@ -1,0 +1,32 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+    download: ["pdf", "epub"] #"docx"
+    search: yes
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+    sharing:
+      facebook: yes
+      github: yes
+      twitter: yes
+      linkedin: yes
+      weibo: no
+      instapaper: no
+      vk: no
+      #all: ['facebook', 'twitter', 'linkedin']
+    info: yes
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default
+#bookdown::word_document2: default

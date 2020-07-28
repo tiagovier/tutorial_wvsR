@@ -1,0 +1,87 @@
+# Visualizar os dados
+
+```{r dados, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+load("~/Dropbox/04_Data/R/tiagovier.github.io/data/WVS_7.RData")
+library(tidyverse)
+library(ggplot2)
+```
+
+Para visualizar os dados, usamos a biblioteca `ggplot2()` também da gramática Tidyverse.
+
+Após organizar e manipular os dados e fazer análises descritivas, é uma boa estratégia apresentar as informações em gráficos para evidenciar padrões, tendências e comparações. Conforme visto anteriormente, a biblioteca para plotar gráficos é a `ggplot()`. A biblioteca `ggthemes()` permite aplicar alguns temas já pré-estabelecidos.
+
+O `ggplot()` é uma biblioteca que constrói os gráficos em camadas. Primeiramente, define-se a “folha” com uma base de dados que será usada; em seguida, a geometria e os demais parâmetros dos gráficos.
+
+O comando básico do ggplot() é: `ggplot(data = dados, aes(x = Explicativa, y = Resposta)) + geoma + ...`
+
+Tipos de geometrias disponíveis: 
+
+* Histograma: `geom_hist()`
+* Barras: `geom_bar()`
+* Pontos: `geom_point()`
+* Diagrama de caixa (boxplot): `geom_boxplot()`
+* Linhas: `geom_line()`
+
+O guia do `ggplot()` pode ser encontrado [aqui](https://ggplot2.tidyverse.org/index.html). Nesta [galeria](https://www.r-graph-gallery.com/), podem ser encontrados diversos exemplos de gráficos para se inspirar.
+
+Veja uns exemplos abaixo:
+
+Exemplo 1: plotar um gráfico de densidade da variável idade:
+
+```{r densidade, echo = TRUE,error=FALSE, warning=FALSE, message=FALSE}
+
+# plotar um gráfico de densidade da variável idade
+ggplot(df_wvs7, aes(x = X003)) + geom_density() 
+
+```
+
+Exemplo 2: aqui, reproduzimos o mapa cultural de Inglehart e Welzel [-@inglehart_modernization_2005] para alguns países. Antes, é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.
+
+```{r dadosmapacultural, echo = TRUE,error=FALSE, warning=FALSE, message=FALSE}
+
+# Criar uma lista com os países que se quer analisar
+# 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia
+paises <- c(76, 32, 152, 170)  
+
+# Extrair e retrabalhar as variáveis que precisamos
+# select() para selecionar as variáveis de interesse
+# filter() para filtrar usando o vetor 'países' criado acima
+# group_by() para agrupar por onda-país, onda e país
+# summarise() para agregar os dados pela média
+df_y001 <- df_wvs7 %>%
+  select(S024, S020, S003, tradrat5, survself) %>% 
+  filter(S003 %in% paises) %>% 
+  group_by(S024, S020, S003) %>% 
+  summarise(tradrat5 = mean(tradrat5, na.rm = T),
+            survself = mean(survself, na.rm = T)) 
+
+```
+
+
+Feito isso podemos criar a figura:
+
+Lembre-se que o `ggplot` usa o símbolo `+` para adicionar cada um dos elementos da figura.
+
+```{r mapacultural, echo = TRUE,error=FALSE, warning=FALSE, message=FALSE}
+
+# lembre se de carregar a variável ggplot se ela não tiver sido carregada 
+library(ggplot2)
+
+# Reproduzir o Mapa Cultural Inglehart
+
+ggplot(df_y001, aes(x = survself, 
+                    y = tradrat5, 
+                    color = as.factor(S003), 
+                    label = as.factor(S003))) + 
+  # definir os dados e as dimensões
+  geom_point() + # geometria pontos
+  geom_text(hjust = 0, nudge_x = 0.05, check_overlap = TRUE) + # rótulos dos pontos
+  scale_x_continuous(limits = c(-2, 2)) + # restringe eixo x e y entre -2 e 2
+  scale_y_continuous(limits = c(-2, 2)) +
+  labs(x = "sobrevivencia-autoexpressão",
+       y = "tradicional-racional",
+       title = "Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)") # rótulos do gráfico x, y e título
+
+```
+
+

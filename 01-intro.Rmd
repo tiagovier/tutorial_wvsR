@@ -1,0 +1,40 @@
+# Introdução {#intro}
+
+## R e RStudio
+
+R é uma linguagem de programação com diversas características: tem como foco uma programação funcional, flexível, dinâmica e, principalmente, direcionada à manipulação, análise e visualização de dados.
+
+É muito útil, por exemplo, para estudos de bases de dados complexas e pesquisas estatísticas. Essa funcionalidade também pode ser chamada de mineração de dados: o processo de exploração de dados em grande escala com o objetivo de buscar padrões, associações, relacionamentos e sistematização de variáveis. 
+
+O R e o RStudio são softwares livres e são compatíveis com os sistemas operacionais Windows, Linux e macOS, além de possuir boa integração com outros programas, como planilhas (por exemplo, Microsoft Excel) e outros softwares de análise de dados (por exemplo, SPSS).
+
+O que justifica seu uso nas Ciências Sociais? Existe um uso crescente de métodos quantitativos nas Ciências Sociais acompanhado de uma maior disponibilidade de dados quantitativos. No entanto, cientistas sociais enfrentam diversas dificuldades de acesso às ferramentas tradicionais de análise de dados que são caras e oferecem pouco suporte para o aprendizado de estudantes e jovens pesquisadores. Além de contribuir para democratizar o uso de métodos quantitativos em Ciências Sociais, o R também tem o potencial de impulsionar a colaboração entre cientistas sociais e a reprodutibilidade de estudos na área. 
+
+## World Values Survey (WVS)
+
+A World Values Survey (WVS) investiga mudanças culturais em diversas sociedades e possibilita a comparação das características dessas mudanças, contribuindo, entre outros campos, para o debate sobre a relação entre desenvolvimento socio-econômico e mudanças culturais, para o acompanhamento longitudinal das mudanças em curso e para a ampliação do conhecimento de diferentes áreas do planeta – muitas delas eram antes de acesso limitado a determinadas regiões.
+
+![](img/wvs_asso.jpg)
+
+O embasamento teórico do WVS está associada à teoria da modernização e do pós-materialismo elaborada por Ronald Inglehart, que sugere que fenômenos como o crescimento do setor de serviços, a melhoria na qualidade de vida e o aumento das oportunidades educacionais nas sociedades industriais avançadas ou pós-industriais têm levado a uma gradual transformação nos valores e atitudes sociais.
+
+A pesquisa teve início em 1981 e consiste em inquéritos representativos em nível nacional realizados em quase cem países, abrangendo quase 90% da população mundial. Utiliza um questionário comum de 180 variáveis e inclui atualmente entrevistas com quase 400 mil indivíduos.
+
+A tese articula duas hipóteses para explicar essa mudança:  
+
+a) a *hipótese da escassez*: defende que as prioridades da ação humana são resultado do ambiente sócio-econômico vigente, no qual valoriza-se subjetivamente coisas e aspectos da realidade que são escassos; e  
+b) *hipótese da socialização*: defende que grande parte dos valores básicos de um indivíduo derivam das condições presentes em seu período de formação, anterior à idade adulta.
+
+Dessa forma, o WVS se desenvolve a partir de um referencial teórico específico mas possibilita uma ampla gama de análises. A pesquisa utiliza como hipótese central que *“as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes*. Mas, ao mesmo tempo, *[...] esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário.”* [@castro_conteudo_2015]
+
+
+
+![](img/wvs_logo.png)
+
+O Brasil participou de cinco das sete ondas da WVS realizadas até agora (1990-1994; 1995-1999; 2005-2009; 2010-2014; e 2017-2020). O professor Henrique Castro coordena a pesquisa no país desde a quinta onda que foi baseada na Universidade de Brasília, entre 2005 e 2014, e a partir da Universidade Federal do Rio Grande do Sul (UFRGS), desde 2017, com financiamento da Capes/MEC.
+
+O WVS no Brasil utiliza uma amostra probabilística completa em três etapas: a) seleção aleatória e estabelecimento de 150 clusters (baseada nos setores censitários do país, incluindo zonas urbanas e rurais); b) seleção aleatória de habitações em cada setor censitário; e c) escolha do entrevistado na habitação, considerando que seja alfabetizado, tenha 16 anos ou mais de idade e data de aniversário mais próxima do dia da primeira visita bem-sucedida.
+
+Atualmente, o grupo de pesquisa WVS Brasil é integrado por discentes e docentes do Programa de Pós-Graduação em Ciência Política e discentes do Departamento de Economia e Relações Internacionais, ambos da UFRGS, e por pesquisadores de diversas universidades do Brasil, como Universidade de Brasília, Unisinos e Universidade de Caxias do Sul, e do Exterior, como a University College Dublin, integrando uma equipe de cerca de 60 pesquisadores.
+
+Os dados gerados por todos os países integrantes da WVS ficam disponíveis para livre acesso na internet, por meio da página [www.worldvaluessurvey.org](www.worldvaluessurvey.org).

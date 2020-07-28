@@ -1,0 +1,72 @@
+# Bibliotecas {#biblio}
+
+Quando instalamos o R, instalamos junto uma grande quantidade de comandos e funções. A lista de funções do R-base pode ser vista [aqui](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
+
+Para além desses recursos, o R dispõe de uma grande quantidade de bibliotecas (ou pacotes). No momento em que escrevemos este tutorial, a plataforma de contribuições [CRAN](https://cran.r-project.org/web/packages/) lista 16,045 bibliotecas disponíveis. As diferentes contribuições são agrupadas por tópicos. É possível, por exemplo, conhecer os pacotes disponíveis para as [Ciências Sociais](https://cran.r-project.org/web/views/SocialSciences.html).
+
+Neste tutorial, utilizamos as funções do R-base e sugerimos bibliotecas adicionais que facilitam algumas operações e são suficientes para a maior parte das necessidades de um pesquisador interessado em analisar os dados do WVS.
+
+As bibliotecas que são usadas neste tutorial fazem parte do grupo de pacotes [tidyverse](https://www.tidyverse.org/) [-@R-tidyverse]. Entre elas, estão os pacotes dplyr, haven e ggplot2. Mais detalhes sobre esse tema podem ser obtidos no livro acessível [neste link](https://r4ds.had.co.nz/). Além do `tidyverse`, usamos a biblioteca `codebook` para ter acesso ao metadados disponíveis nos arquivos de SPSS e Stata.
+
+## Instalando bibliotecas adicionais
+
+Como mencionamos anteriormente, quando instalamos o R-base já instalamos uma série de funções e comandos. 
+
+Entretanto, você pode usar um comando específico para instalar novas bibliotecas do repositório CRAN.
+
+Para instalar bibliotecas, use o comando: `install.packages("nome_da_bibliteca")`. 
+
+Outra maneira de instalar novas bibliotecas é usar a aba "Packages". 
+
+Essa aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão "Install". 
+
+Para instalar a biblioteca tidyverse digite:
+
+```{r instalar1, eval = FALSE}
+
+# para instalar as bibliotecas da tidyverse
+install.packages("tidyverse")
+
+```
+
+Para instalar a biblioteca codebook de visualização de metadados (ver no capítulo seguinte) digite:
+
+```{r instalar2, eval = FALSE}
+
+# para instalar a biblioteca codebook para visualizar os metadados 
+# (ver no capítulo seguinte)
+install.packages("codebook")
+
+```
+
+Quando rodamos o comando, usando `Crtl + Enter` ou `Run` no script, ou `Enter` se você está digitando diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu funcionamento. 
+
+**É importante que se instale todas as dependências indicadas pelo R.** Verifique no Console e, se o R perguntar se você quer fazer a instalação das dependências, selecione "Yes".
+
+## Carregando bibliotecas
+
+É preciso carregar as bibliotecas sempre que se inicia uma nova sessão.
+
+O comando para carregar as bibliotecas é `library("nome_da_biblioteca")`.
+
+Para carregar as bibliotecas que vamos usar, use os comandos abaixo:
+
+```{r carregar, eval=FALSE}
+
+# carregar o tidyverse
+library(tidyverse)
+
+# carregar a biblioteca haven, 
+# usada para importar o arquivo  no formato do SPSS 
+library(haven)
+
+# carregar o codebook
+library(codebook)
+
+```
+
+Sempre que abrir o RStudio, é preciso recarregar as bibliotecas, pois o RStudio reinicia a sessão somente com os comandos do R-base.
+
+É recomendado que as bibliotecas que serão usadas nas análises sejam indicadas no início do código R onde são feitas as análises. Dessa forma, qualquer pesquisador poderá identificar os requisitos necessários para reproduzir as suas análises.
+
+Uma vez carregadas as bibliotecas, nós podemos continuar para o próximo passo que é importar os dados que vamos analisar. 

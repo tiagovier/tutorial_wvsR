@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-br" xml:lang="pt-br">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Descrevendo e analisando os dados | Uso de R para análise dos dados da World Values Survey</title>
+  <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Descrevendo e analisando os dados | Uso de R para análise dos dados da World Values Survey" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/capa.png" />
+  <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Descrevendo e analisando os dados | Uso de R para análise dos dados da World Values Survey" />
+  
+  <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="twitter:image" content="img/capa.png" />
+
+<meta name="author" content="Tiago Vier, UFRGS" />
+<meta name="author" content="Daniel Capistrano, UCD" />
+<meta name="author" content="Jéssica Duarte, UFRGS" />
+<meta name="author" content="Luana Isabelle Beal, UFRGS" />
+<meta name="author" content="Carla Mendonça, ISCTE" />
+<meta name="author" content="Cristiana Verônica Mueller, UNISC" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="importando-bases-de-dados.html"/>
+<link rel="next" href="visualizar-os-dados.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-Vindo(a)!</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r-e-rstudio"><i class="fa fa-check"></i><b>1.1</b> R e RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#world-values-survey-wvs"><i class="fa fa-check"></i><b>1.2</b> World Values Survey (WVS)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html"><i class="fa fa-check"></i><b>2</b> Instalando o R e o RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#linux"><i class="fa fa-check"></i><b>2.1</b> LINUX</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#mac-os-x"><i class="fa fa-check"></i><b>2.2</b> Mac OS X</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-1"><i class="fa fa-check"></i><b>2.2.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>2.2.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#windows"><i class="fa fa-check"></i><b>2.3</b> Windows</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.3.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#identificando-o-rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.5</b> Criando um projeto no RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="biblio.html"><a href="biblio.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
+<li class="chapter" data-level="3.1" data-path="biblio.html"><a href="biblio.html#instalando-bibliotecas-adicionais"><i class="fa fa-check"></i><b>3.1</b> Instalando bibliotecas adicionais</a></li>
+<li class="chapter" data-level="3.2" data-path="biblio.html"><a href="biblio.html#carregando-bibliotecas"><i class="fa fa-check"></i><b>3.2</b> Carregando bibliotecas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html"><i class="fa fa-check"></i><b>4</b> Importando bases de dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#com-o-uso-das-ferramentas-da-aba-environment"><i class="fa fa-check"></i><b>4.1</b> Com o uso das ferramentas da aba “Environment”</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-formato-r"><i class="fa fa-check"></i><b>4.1.1</b> Arquivos em formato R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-outros-formatos"><i class="fa fa-check"></i><b>4.1.2</b> Arquivos em outros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#com-o-uso-de-linhas-de-comando"><i class="fa fa-check"></i><b>4.2</b> Com o uso de linhas de comando</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-formato-r-1"><i class="fa fa-check"></i><b>4.2.1</b> Arquivos em formato R</a></li>
+<li class="chapter" data-level="4.2.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-outros-formatos-1"><i class="fa fa-check"></i><b>4.2.2</b> Arquivos em outros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#gerando-um-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.3</b> Gerando um dicionário de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html"><i class="fa fa-check"></i><b>5</b> Descrevendo e analisando os dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#descrevendo-os-dados"><i class="fa fa-check"></i><b>5.1</b> Descrevendo os dados</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#criar-variáveis-e-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Criar variáveis e vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#funções-básicas-e-comandos-úteis"><i class="fa fa-check"></i><b>5.1.2</b> Funções básicas e comandos úteis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#estatísticas-descritivas"><i class="fa fa-check"></i><b>5.2</b> Estatísticas descritivas</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#filtrar-e-selecionar"><i class="fa fa-check"></i><b>5.2.1</b> Filtrar e selecionar</a></li>
+<li class="chapter" data-level="5.2.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#criar-uma-variável"><i class="fa fa-check"></i><b>5.2.2</b> Criar uma variável</a></li>
+<li class="chapter" data-level="5.2.3" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#contar"><i class="fa fa-check"></i><b>5.2.3</b> Contar</a></li>
+<li class="chapter" data-level="5.2.4" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#sumarizar"><i class="fa fa-check"></i><b>5.2.4</b> Sumarizar</a></li>
+<li class="chapter" data-level="5.2.5" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#agrupar"><i class="fa fa-check"></i><b>5.2.5</b> Agrupar</a></li>
+<li class="chapter" data-level="5.2.6" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#fator-de-ponderação-peso"><i class="fa fa-check"></i><b>5.2.6</b> Fator de ponderação (peso)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#análises-bi-e-multivariadas"><i class="fa fa-check"></i><b>5.3</b> Análises bi e multivariadas</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#correlação"><i class="fa fa-check"></i><b>5.3.1</b> Correlação</a></li>
+<li class="chapter" data-level="5.3.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.3.2</b> Regressão linear múltipla</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualizar-os-dados.html"><a href="visualizar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizar os dados</a></li>
+<li class="chapter" data-level="7" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i><b>7</b> Glossário</a></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uso de R para análise dos dados da World Values Survey</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descrevendo-e-analisando-os-dados" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Descrevendo e analisando os dados</h1>
+<p>Após instalar R e RStudio, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos de dados, começa a verdadeira diversão: finalmente, você vai trabalhar com os dados!</p>
+<p>O R permite que se faça desde as operações mais simples, como uma calculadora, passando pela organização e limpeza dos dados, até análises estatísticas mais avançadas.</p>
+<p>Um excelente começo dessa empreitada é a descrição dos dados que não só garante o divertimento do pesquisador, como também permite que se façam excelentes análises e conclusões.</p>
+<p>A partir da estatística descritiva, obtém-se um conjunto de ferramentas que permitem:</p>
+<ol style="list-style-type: lower-alpha">
+<li>organizar os dados - agrupando, selecionando, filtrando, ordenando, criando variáveis;<br />
+</li>
+<li>descrever e analisar os dados - resumindo-os com base em sua média, moda, mediana, cruzando e contando as variáveis, criando gráficos e tabelas.</li>
+</ol>
+<p>A principal função da estatística descritiva é resumir os dados e facilitar a assimilação da informação <span class="citation">(AGRESTI; FINLAY; VIALI, <a href="#ref-agresti_metodos_2012" role="doc-biblioref">2012</a>)</span>.</p>
+<p>Além da descrição dos dados, o R também oferece suporte para que sejam feitos testes estatísticos mais avançados bi e multivariados, entre eles, correlação e regressão linear múltipla que iremos discutir mais adiante.</p>
+<p>Nesta seção, você pode aprender os comandos do R que permitem criar anotações, criar variáveis e vetores, conectar sentenças do código de programação, visualizar os valores máximo e mínimo de uma variável, obter a média, somar os valores de uma variável, filtrar, selecionar, ordenar, contar, cruzar, criar nova coluna, resumir os dados a partir de alguma operação, excluir valores da análise, visualizar variáveis, fazer gráficos, fazer testes de correlação e análises de regressão multivariada.</p>
+<p>Isso é tudo o que se precisa para, em ordem de importância: ter adoráveis momentos com o seu banco de dados e construir conhecimento a partir de análises robustas.</p>
+<div id="descrevendo-os-dados" class="section level2">
+<h2><span class="header-section-number">5.1</span> Descrevendo os dados</h2>
+<div id="criar-variáveis-e-vetores" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Criar variáveis e vetores</h3>
+<p>Para criar uma variável, escolha um nome para ela e atribua através do sinal <code>&lt;-</code> um valor para a mesma, lembrando sempre de que o R não aceita caracteres do tipo espaço, então se o nome de sua variável tiver mais de um termo é necessário usar o conector underline (_) entre as palavras. Lembre-se também que o R faz a diferença entre letras maiúsculas e minúsculas.</p>
+<p>Para criar vetores, segue-se a mesma lógica, mas os valores devem ser inseridos entre os parênteses do código: <code>c()</code>, o qual indica que há um conjunto de valores (esses valores devem ser separados por vírgulas e entre aspas no caso de o valor ser um caractere, ou <em>string</em>). Os valores atribuídos podem ser números simples, podem ser operações como soma, subtração, multiplicação.</p>
+<p>Após criados, variáveis e vetores, podem também ter seus valores submetidos a algum tipo de operação. Veja estes exemplos:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="descrevendo-e-analisando-os-dados.html#cb6-1"></a><span class="co"># Criar um vetor chamado &quot;Meu_resultado&quot; que é o resultado da operação 1 + 5</span></span>
+<span id="cb6-2"><a href="descrevendo-e-analisando-os-dados.html#cb6-2"></a>Meu_resultado &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span>
+<span id="cb6-3"><a href="descrevendo-e-analisando-os-dados.html#cb6-3"></a></span>
+<span id="cb6-4"><a href="descrevendo-e-analisando-os-dados.html#cb6-4"></a><span class="co"># Criar um vetor chamado &quot;Brasil&quot; e multiplicá-lo por 3</span></span>
+<span id="cb6-5"><a href="descrevendo-e-analisando-os-dados.html#cb6-5"></a>Brasil &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">37</span>)</span>
+<span id="cb6-6"><a href="descrevendo-e-analisando-os-dados.html#cb6-6"></a>Brasil <span class="op">*</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb6-7"><a href="descrevendo-e-analisando-os-dados.html#cb6-7"></a></span>
+<span id="cb6-8"><a href="descrevendo-e-analisando-os-dados.html#cb6-8"></a><span class="co"># Criar um vetor chamado Países com strings/textos</span></span>
+<span id="cb6-9"><a href="descrevendo-e-analisando-os-dados.html#cb6-9"></a>Paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Brasil&quot;</span>) </span>
+<span id="cb6-10"><a href="descrevendo-e-analisando-os-dados.html#cb6-10"></a></span>
+<span id="cb6-11"><a href="descrevendo-e-analisando-os-dados.html#cb6-11"></a><span class="co"># Cálculo da idade com base no ano de nascimento</span></span>
+<span id="cb6-12"><a href="descrevendo-e-analisando-os-dados.html#cb6-12"></a>Ano_Nasc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1990</span>, <span class="dv">1984</span>, <span class="dv">1961</span>)</span>
+<span id="cb6-13"><a href="descrevendo-e-analisando-os-dados.html#cb6-13"></a></span>
+<span id="cb6-14"><a href="descrevendo-e-analisando-os-dados.html#cb6-14"></a><span class="co"># Calcular as idades</span></span>
+<span id="cb6-15"><a href="descrevendo-e-analisando-os-dados.html#cb6-15"></a><span class="dv">2020</span> <span class="op">-</span><span class="st"> </span>Ano_Nasc</span>
+<span id="cb6-16"><a href="descrevendo-e-analisando-os-dados.html#cb6-16"></a></span>
+<span id="cb6-17"><a href="descrevendo-e-analisando-os-dados.html#cb6-17"></a><span class="co"># Armazenar como um vetor na aba Environment</span></span>
+<span id="cb6-18"><a href="descrevendo-e-analisando-os-dados.html#cb6-18"></a>Idade &lt;-<span class="st"> </span><span class="dv">2020</span> <span class="op">-</span><span class="st"> </span>Ano_Nasc</span></code></pre></div>
+</div>
+<div id="funções-básicas-e-comandos-úteis" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Funções básicas e comandos úteis</h3>
+<p>Após carregar seu banco de dados ou criar suas próprias variáveis, é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, alguns comandos do R-base para a variável “Idade”, por exemplo, são os seguintes:</p>
+<ul>
+<li>Valor máximo: <code>max(Idade)</code></li>
+<li>Valor mínimo: <code>min(Idade)</code></li>
+<li>Média: <code>mean(Idade)</code></li>
+<li>Soma: <code>sum(Idade)</code></li>
+</ul>
+<p>Na gramática do tidyverse, para executar mais de um comando você pode inserir entre eles o conector <code>%&gt;%</code> (que pode ser lido como “e então”, em uma sequência de operações)</p>
+<p>Além disso, pode ser útil acrescentar anotações que não sejam lidas pelo R como uma linha de código. Para tanto basta inserir no início da frase o caractere cerquilha, ou jogo da velha (<code>#</code>).</p>
+<p>Veja o exemplo:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descrevendo-e-analisando-os-dados.html#cb7-1"></a><span class="co"># Criar anotações: #</span></span>
+<span id="cb7-2"><a href="descrevendo-e-analisando-os-dados.html#cb7-2"></a><span class="co"># Conectar as linhas do código: %&gt;% </span></span>
+<span id="cb7-3"><a href="descrevendo-e-analisando-os-dados.html#cb7-3"></a></span>
+<span id="cb7-4"><a href="descrevendo-e-analisando-os-dados.html#cb7-4"></a><span class="co"># Exemplos:</span></span>
+<span id="cb7-5"><a href="descrevendo-e-analisando-os-dados.html#cb7-5"></a><span class="co"># Abrir a base de dados do WVS, e então sumarisar pela média, </span></span>
+<span id="cb7-6"><a href="descrevendo-e-analisando-os-dados.html#cb7-6"></a><span class="co"># e então efetuar a contagem das variáveis S003 e X001  </span></span>
+<span id="cb7-7"><a href="descrevendo-e-analisando-os-dados.html#cb7-7"></a><span class="co"># Variáveis do WVS usadas: X003 = Idade; SOO3 = País; X001 = Sexo</span></span>
+<span id="cb7-8"><a href="descrevendo-e-analisando-os-dados.html#cb7-8"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-9"><a href="descrevendo-e-analisando-os-dados.html#cb7-9"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">mean</span>(X003, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb7-10"><a href="descrevendo-e-analisando-os-dados.html#cb7-10"></a><span class="st">  </span><span class="kw">count</span>(S003, X001)</span></code></pre></div>
+</div>
+</div>
+<div id="estatísticas-descritivas" class="section level2">
+<h2><span class="header-section-number">5.2</span> Estatísticas descritivas</h2>
+<div id="filtrar-e-selecionar" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Filtrar e selecionar</h3>
+<p>Partindo para funções mais sofisticadas, é possível organizar o banco de dados de maneira sistemática e fazer análises resumidas das variáveis. O comando <code>filter()</code> filtra as observações (linhas) baseadas em uma condição determinada pelo pesquisador, como, por exemplo, selecionar determinados países, gênero feminino ou masculino, faixas de renda, idade ou escolaridade.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descrevendo-e-analisando-os-dados.html#cb8-1"></a><span class="co"># Neste exemplo, filtrar observações baseadas na condição </span></span>
+<span id="cb8-2"><a href="descrevendo-e-analisando-os-dados.html#cb8-2"></a><span class="co"># País (S003) igual a Brasil (código 76). </span></span>
+<span id="cb8-3"><a href="descrevendo-e-analisando-os-dados.html#cb8-3"></a><span class="co"># O resultado dessa operação é salvo como uma nova base de dados chamada &quot;base_brasil&quot;.</span></span>
+<span id="cb8-4"><a href="descrevendo-e-analisando-os-dados.html#cb8-4"></a></span>
+<span id="cb8-5"><a href="descrevendo-e-analisando-os-dados.html#cb8-5"></a>base_brasil &lt;-<span class="st"> </span></span>
+<span id="cb8-6"><a href="descrevendo-e-analisando-os-dados.html#cb8-6"></a><span class="st">  </span>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-7"><a href="descrevendo-e-analisando-os-dados.html#cb8-7"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">==</span><span class="st"> </span><span class="dv">76</span>)</span></code></pre></div>
+<p>Com o comando <code>select()</code> é possível escolher as variáveis específicas (colunas) com que se deseja trabalhar.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descrevendo-e-analisando-os-dados.html#cb9-1"></a><span class="co"># Selecionar somente variáveis país e sexo e salvar como uma nova base:</span></span>
+<span id="cb9-2"><a href="descrevendo-e-analisando-os-dados.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="descrevendo-e-analisando-os-dados.html#cb9-3"></a>base_duas_colunas &lt;-<span class="st"> </span></span>
+<span id="cb9-4"><a href="descrevendo-e-analisando-os-dados.html#cb9-4"></a><span class="st">  </span>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-5"><a href="descrevendo-e-analisando-os-dados.html#cb9-5"></a><span class="st">  </span><span class="kw">select</span>(S003, X001)</span></code></pre></div>
+</div>
+<div id="criar-uma-variável" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Criar uma variável</h3>
+<p>O comando <code>mutate()</code> cria uma nova variável (coluna) ou modifica uma já existente a partir de manipulações dos dados. No exemplo abaixo, nós criamos uma variável de idade a partir da variável de ano de nascimento:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="descrevendo-e-analisando-os-dados.html#cb10-1"></a><span class="co"># Criar uma variável com a idade do respondente a partir do ano de nascimento (X002): </span></span>
+<span id="cb10-2"><a href="descrevendo-e-analisando-os-dados.html#cb10-2"></a></span>
+<span id="cb10-3"><a href="descrevendo-e-analisando-os-dados.html#cb10-3"></a>base_do_wvs &lt;-<span class="st"> </span></span>
+<span id="cb10-4"><a href="descrevendo-e-analisando-os-dados.html#cb10-4"></a><span class="st">  </span>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-5"><a href="descrevendo-e-analisando-os-dados.html#cb10-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">idade =</span> <span class="dv">2020</span> <span class="op">-</span><span class="st"> </span>X002)</span></code></pre></div>
+<p>A função <code>if_else()</code> divide os valores em dois grupos: os que se encaixam na condição e os que não se encaixam. No exemplo a seguir, utilizamos esse comando para cria uma nova variável. Uma variável que assume dois valores: os que têm idade inferior a 30 (<code>X003 &lt; 30</code>) são classificado como “Jovem”, os que não possuem são classificados como “Não Jovem”.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descrevendo-e-analisando-os-dados.html#cb11-1"></a><span class="co"># Criar uma variável de faixas etárias. </span></span>
+<span id="cb11-2"><a href="descrevendo-e-analisando-os-dados.html#cb11-2"></a><span class="co"># O if_else() precisa de três instruções: </span></span>
+<span id="cb11-3"><a href="descrevendo-e-analisando-os-dados.html#cb11-3"></a><span class="co"># if_else(&quot;condição&quot;, &quot;valor se sim&quot;, &quot;valor se não&quot;)</span></span>
+<span id="cb11-4"><a href="descrevendo-e-analisando-os-dados.html#cb11-4"></a></span>
+<span id="cb11-5"><a href="descrevendo-e-analisando-os-dados.html#cb11-5"></a>base_do_wvs &lt;-<span class="st"> </span></span>
+<span id="cb11-6"><a href="descrevendo-e-analisando-os-dados.html#cb11-6"></a><span class="st">  </span>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-7"><a href="descrevendo-e-analisando-os-dados.html#cb11-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">faixa_etaria =</span> <span class="kw">if_else</span>(idade <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;Jovem&quot;</span>, <span class="st">&quot;Não Jovem&quot;</span>))</span></code></pre></div>
+</div>
+<div id="contar" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Contar</h3>
+<p>A função <code>count()</code> permite que se faça análises dos dados ao apresentar sua contagem (frequência) e cruzar variáveis.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="descrevendo-e-analisando-os-dados.html#cb12-1"></a><span class="co">#Neste exemplo contamos o número de observações de cada país: </span></span>
+<span id="cb12-2"><a href="descrevendo-e-analisando-os-dados.html#cb12-2"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-3"><a href="descrevendo-e-analisando-os-dados.html#cb12-3"></a><span class="st">  </span><span class="kw">count</span> (S003) </span>
+<span id="cb12-4"><a href="descrevendo-e-analisando-os-dados.html#cb12-4"></a></span>
+<span id="cb12-5"><a href="descrevendo-e-analisando-os-dados.html#cb12-5"></a><span class="co"># Aqui podemos combinar o comando filter (filtrar somente para o Brasil) e o</span></span>
+<span id="cb12-6"><a href="descrevendo-e-analisando-os-dados.html#cb12-6"></a><span class="co"># comando count (contar o numero de observacoes para cada país)</span></span>
+<span id="cb12-7"><a href="descrevendo-e-analisando-os-dados.html#cb12-7"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-8"><a href="descrevendo-e-analisando-os-dados.html#cb12-8"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">==</span><span class="st"> </span><span class="dv">76</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-9"><a href="descrevendo-e-analisando-os-dados.html#cb12-9"></a><span class="st">  </span><span class="kw">count</span> (S003) </span></code></pre></div>
+</div>
+<div id="sumarizar" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> Sumarizar</h3>
+<p>Outra forma de manipular e avaliar os dados é utilizando o comando <code>summarise()</code> para resumir os dados em função de alguma operação (média/mean e mediana/median). Usando o critério <code>na.rm = TRUE</code>, em alguns comandos, as não-respostas (<em>missing values</em>) são removidas do cálculo.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="descrevendo-e-analisando-os-dados.html#cb13-1"></a><span class="co"># summarise(), exemplo resumir os dados pela média e mediana de idade</span></span>
+<span id="cb13-2"><a href="descrevendo-e-analisando-os-dados.html#cb13-2"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-3"><a href="descrevendo-e-analisando-os-dados.html#cb13-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">mean</span>(X003))</span>
+<span id="cb13-4"><a href="descrevendo-e-analisando-os-dados.html#cb13-4"></a></span>
+<span id="cb13-5"><a href="descrevendo-e-analisando-os-dados.html#cb13-5"></a><span class="co"># para excluir missing values: na.rm = TRUE</span></span>
+<span id="cb13-6"><a href="descrevendo-e-analisando-os-dados.html#cb13-6"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-7"><a href="descrevendo-e-analisando-os-dados.html#cb13-7"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">mean</span>(X003, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
+<span id="cb13-8"><a href="descrevendo-e-analisando-os-dados.html#cb13-8"></a>            <span class="dt">mediana =</span> <span class="kw">median</span>(X003, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+</div>
+<div id="agrupar" class="section level3">
+<h3><span class="header-section-number">5.2.5</span> Agrupar</h3>
+<p>Para mostrar os resultados agrupados por uma variável específica, utilizamos o comando <code>group_by</code>. Nesse exemplo abaixo, fazemos a mesma média do exemplo anterior para cada um dos países:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="descrevendo-e-analisando-os-dados.html#cb14-1"></a><span class="co"># Mesma operação de média de idade do exemplo anterior</span></span>
+<span id="cb14-2"><a href="descrevendo-e-analisando-os-dados.html#cb14-2"></a><span class="co"># Só que adicionamos uma nova linha (linha 2) para agrupar os resultados por país</span></span>
+<span id="cb14-3"><a href="descrevendo-e-analisando-os-dados.html#cb14-3"></a><span class="co"># O resultado apresenta a média de idade para cada um dos países</span></span>
+<span id="cb14-4"><a href="descrevendo-e-analisando-os-dados.html#cb14-4"></a></span>
+<span id="cb14-5"><a href="descrevendo-e-analisando-os-dados.html#cb14-5"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-6"><a href="descrevendo-e-analisando-os-dados.html#cb14-6"></a><span class="st">  </span><span class="kw">group_by</span>(S003) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-7"><a href="descrevendo-e-analisando-os-dados.html#cb14-7"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">mean</span>(X003, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+</div>
+<div id="fator-de-ponderação-peso" class="section level3">
+<h3><span class="header-section-number">5.2.6</span> Fator de ponderação (peso)</h3>
+<p>Na maioria das pesquisas de tipo <em>survey</em> existe uma variável que devemos utilizar para que os resultados das nossa operações sejam mais precisos. Nessas pesquisas, a amostra planejada nem sempre consegue ser executada perfeitamente, ou seja, nem todas as pessoas selecionadas na amostra são entrevistadas.</p>
+<p>Para corrigir os possíveis viezes de participação decorrente disso, o WVS possui um fator de ponderação (peso/<em>weight</em>) que deve ser utilizado quando estamos produzindo estatísticas descritivas. Para isso, nós vamos incluir uma opção de peso (<em>wt</em> / <em>w</em>) assinalando a variável de peso do WVS: <code>S018</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="descrevendo-e-analisando-os-dados.html#cb15-1"></a><span class="co"># Nesse exemplo contamos o número de observações de cada país usando o peso (S018)</span></span>
+<span id="cb15-2"><a href="descrevendo-e-analisando-os-dados.html#cb15-2"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-3"><a href="descrevendo-e-analisando-os-dados.html#cb15-3"></a><span class="st">  </span><span class="kw">count</span>(S003, <span class="dt">wt =</span> S018)</span>
+<span id="cb15-4"><a href="descrevendo-e-analisando-os-dados.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="descrevendo-e-analisando-os-dados.html#cb15-5"></a><span class="co"># Nesse exemplo temos a média de idade por país usando o peso (S018)</span></span>
+<span id="cb15-6"><a href="descrevendo-e-analisando-os-dados.html#cb15-6"></a><span class="co"># Note que o comando também é diferente &quot;weighted.mean&quot; em vez de &quot;mean&quot;</span></span>
+<span id="cb15-7"><a href="descrevendo-e-analisando-os-dados.html#cb15-7"></a></span>
+<span id="cb15-8"><a href="descrevendo-e-analisando-os-dados.html#cb15-8"></a>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-9"><a href="descrevendo-e-analisando-os-dados.html#cb15-9"></a><span class="st">  </span><span class="kw">group_by</span>(S003) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-10"><a href="descrevendo-e-analisando-os-dados.html#cb15-10"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">weighted.mean</span>(X003, <span class="dt">w =</span> S018, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+</div>
+</div>
+<div id="análises-bi-e-multivariadas" class="section level2">
+<h2><span class="header-section-number">5.3</span> Análises bi e multivariadas</h2>
+<p>As análises descritivas oferecem diversas possibilidades para conhecer comportamentos, distribuição e padrões das diferentes variáveis. Contudo, quando o objetivo é estabelecer relação entre as mesmas é necessário adotar testes mais avançados bi e multivariados como correlação e regressão linear múltipla.</p>
+<p>A correlação tem por função avaliar o comportamento de duas variáveis em função uma da outra, mensurando a interdependência das mesmas e o seu grau de associação. Logo, a correlação é apropriada se o seu propósito é analisar se há relação entre a variação de duas dimensões e qual a força dessa relação, como, por exemplo, nas clássicas premissas: nível educacional e renda variam de maneira diretamente proporcional ou apoio à democracia varia de maneira inversamente proporcional a valores autoritários?</p>
+<p>A regressão linear multivariada permite estabelecer valores estimativos de uma variável dependente em relação a um conjunto de outras variáveis independentes. Resulta no nível de previsibilidade de uma variável em função de outras variáveis explicativas. Esse tipo de teste se aplica aos casos em que se almeja avaliar e estabelecer potencial previsibilidade de uma variável em função de outras, e não apenas comparar seus comportamentos, por exemplo, prevendo a taxa de desconfiança em relação aos partidos com base na quantidade de pessoas que estão satisfeitas com a democracia.</p>
+<div id="correlação" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Correlação</h3>
+<p>Para fazer o teste de correlação basta selecionar o par de variáveis em questão e adicionar o comando <code>cor()</code> utilizando todas as observações, como no exemplo abaixo:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="descrevendo-e-analisando-os-dados.html#cb16-1"></a><span class="co"># Selecionar duas variáveis e extrair a correlação</span></span>
+<span id="cb16-2"><a href="descrevendo-e-analisando-os-dados.html#cb16-2"></a>base_do_wvs <span class="op">%&gt;%</span></span>
+<span id="cb16-3"><a href="descrevendo-e-analisando-os-dados.html#cb16-3"></a><span class="st">  </span><span class="kw">select</span>(X002, X003) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-4"><a href="descrevendo-e-analisando-os-dados.html#cb16-4"></a><span class="st">  </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+</div>
+<div id="regressão-linear-múltipla" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Regressão linear múltipla</h3>
+<p>Para efetuar o teste de regressão linear múltipla basta atribuir a uma variável resultado <code>&lt;-</code> a função <code>lm()</code>.</p>
+<p>Veja o exemplo:</p>
+<p><code>lm(variavel_resposta ~ variável_independente_1 + variável_independente_2 + variavel_independente_n), data = .)</code></p>
+<p>É necessário sinalizar qual é o banco de dados utilizado antes para o programa pelo nome do objeto e o recorte através das funções <code>group_by()</code> ou <code>filter()</code>. Nos exemplos a seguir é possível visualizar melhor a estrutura do comando:</p>
+<p>Veja estes exemplos de regressão linear. No Exemplo 1 abaixo, criamos um modelo de regressão usando como variável resposta a renda (X047), idade (X002) e educação (X025R) como variáveis explicativas. Neste exemplo o “.” indica que a base de dados utilizada na função lm() é a que está referenciada antes do “e então” (<code>%&gt;%</code>) na primeira linha.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="descrevendo-e-analisando-os-dados.html#cb17-1"></a><span class="co"># Exemplos de regressão linear</span></span>
+<span id="cb17-2"><a href="descrevendo-e-analisando-os-dados.html#cb17-2"></a></span>
+<span id="cb17-3"><a href="descrevendo-e-analisando-os-dados.html#cb17-3"></a><span class="co"># Exemplo 1:</span></span>
+<span id="cb17-4"><a href="descrevendo-e-analisando-os-dados.html#cb17-4"></a></span>
+<span id="cb17-5"><a href="descrevendo-e-analisando-os-dados.html#cb17-5"></a>modelo_wvs &lt;-<span class="st"> </span>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-6"><a href="descrevendo-e-analisando-os-dados.html#cb17-6"></a><span class="st">          </span><span class="kw">lm</span>(X047 <span class="op">~</span><span class="st"> </span>X025R <span class="op">+</span><span class="st"> </span>X002, <span class="dt">data =</span> .) </span></code></pre></div>
+<p>No Exemplo 2 abaixo, o modelo é gerado a partir do filtro feito na linha 2. Ou seja, neste caso, o modelo utiliza somente os dados do país (<code>S003</code>) de código 68 (Bolívia).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="descrevendo-e-analisando-os-dados.html#cb18-1"></a><span class="co"># Exemplo 2: </span></span>
+<span id="cb18-2"><a href="descrevendo-e-analisando-os-dados.html#cb18-2"></a></span>
+<span id="cb18-3"><a href="descrevendo-e-analisando-os-dados.html#cb18-3"></a>modelo_bolivia &lt;-<span class="st"> </span>base_do_wvs <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb18-4"><a href="descrevendo-e-analisando-os-dados.html#cb18-4"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">==</span><span class="st"> </span><span class="dv">68</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb18-5"><a href="descrevendo-e-analisando-os-dados.html#cb18-5"></a><span class="st">  </span><span class="kw">lm</span>(X047 <span class="op">~</span><span class="st"> </span>X025R <span class="op">+</span><span class="st"> </span>X002, <span class="dt">data =</span> .)</span></code></pre></div>
+<p>Para verificar os coeficientes e estatísticas dos modelos de regressão gerados, basta utilizar a função <code>summary()</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="descrevendo-e-analisando-os-dados.html#cb19-1"></a><span class="co"># Resultados do Exemplo 1: </span></span>
+<span id="cb19-2"><a href="descrevendo-e-analisando-os-dados.html#cb19-2"></a><span class="kw">summary</span>(modelo_wvs)</span>
+<span id="cb19-3"><a href="descrevendo-e-analisando-os-dados.html#cb19-3"></a></span>
+<span id="cb19-4"><a href="descrevendo-e-analisando-os-dados.html#cb19-4"></a><span class="co"># Resultados do Exemplo 2: </span></span>
+<span id="cb19-5"><a href="descrevendo-e-analisando-os-dados.html#cb19-5"></a><span class="kw">summary</span>(modelo_bolivia)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references">
+<div id="ref-agresti_metodos_2012">
+<p>AGRESTI, Alan; FINLAY, Barbara; VIALI, Lori. <strong>Métodos Estatísticos para as Ciências Sociais</strong>. Tradução. Edição: 4 ed. Porto Alegre: Penso, 2012. </p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="importando-bases-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizar-os-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["tutorial_wvsR.pdf", "tutorial_wvsR.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true,
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

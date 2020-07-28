@@ -1,0 +1,27 @@
+# Glossário
+
+* Programação: alguns conceitos relevantes para aprender uma linguagem de programação.
+  + Variável: representa um local de armazenamento na memória, com um nome e um valor, mas que não é o valor em si, porque esse pode ser constantemente alterado. Cada variável possui diferentes propriedades, por exemplo, pode ser numérica (*integral* or *double*) ou uma cadeia de caracteres (*string*). Inserindo uma metáfora: cada variável é uma caixinha que pode ter diferentes características (grande, pequena, quadrada, redonda) e que guarda alguma coisa. `x <- 2 #cria variável "x" e atribuir valor 2`
+  + Objeto: cada objeto é único, específico, e pode ser referenciado. Seu conteúdo pode ser atribuído diretamente ou ser o resultado de uma operação. Cada objeto pode ser armazenado em uma variável. Na metáfora, um objeto pode ser uma carta, uma moeda, um lápis-de-cor. `y <- 5 #criar objeto com nome y e atribuir valor 5`
+  + Vetor: uma sequência ordenada de elementos. Importante notar que um vetor armazena apenas um tipo de informação, por exemplo, só números, o que se chama de unidimensional. Como se fosse uma caixinha com várias cartas (uma de fulano, outra de beltrano etc) ou uma caixinha com várias moedas (1 euro, 50 centavos de dólar, 25 centavos de real etc.), uma caixinha com diferentes lápis-de-cor (rosa, azul, verde), ou ainda uma caixinha com moedas e lápis-de-cor. `z <- c(1, 2, 3) #criar vetor z e atribuir os valores 1, 2 e 3`
+  + Lista: é como um vetor avançado, pois também é uma sequência de elementos, mas pode guardar diferentes tipos de dados (números, letras etc), ou seja, é multidimensional. Assim, pode ser uma caixinha que guarda tudo junto: cartas, moedas e lápis-de-cor. `lista <- list(idade = 20, “oi”, 35, “tchau”) #criar "lista" e atribuir diferentes conteúdos`
+
+* Interfaces: o RStudio possui quatro interfaces, que são as “pequenas telas” ou “janelinhas” que aparecem ao iniciar o programa. Pensando em uma cozinha, o Source seria a receita, o passo-a-passo; o Console seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o Environment seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário, o Viewer, com os utensílios de cozinha e ingredientes disponíveis.
+
+* Funções: diferentes “verbos”, tanto do R-base quanto na gramática tidyverse. Realizam diferentes tipos de funções.
+  + Count: conta quantas vezes aparece aquela variável, por exemplo, numa base de dados, e mostra seu valor. `count(x) #contar a quantidade da variável x`
+  + Filter: filtrar observações (“cadastros”) baseadas em uma condição. `filter(x == 1) #filtra todos os valores de x e deixar apenas os cadastros em que x tem o valor 1`
+  + Select: selecionar variáveis - no plural -, ou seja, escolher mais de uma variável. `select(x, y, z) #selecionar as variáveis x, y e z`
+  + Group_by: agrupar variáveis, por exemplo, em uma base de dados grande, “juntar” a partir de um determinado quesito. `group_by(país) #juntar os dados com base nos diferentes valores da variável país`
+  + View: visualiza a operação realizada, normalmente, o R cria uma tabela com o(s) conteúdo(s), ficando mais “simples” de enxergar os dados. `view(objeto)`
+  + Summarise: resumir, sintetizar, os dados baseados em uma operação, ou seja, criando uma espécie de atalho. `summarize(media = mean(idade)) #tem a média das idades das pessoas como critério para resumir ou sintetizar os dados`
+  + Mutate: criar nova informação com base em outras. Visualmente, é como se criasse uma nova “coluna”. `view(a = b + c) #a ‘coluna’ a vai ter o valor da soma de b e c`
+
+* Códigos-chave:
+  + `#` para fazer comentários, ou seja, escrever anotações sem que elas sejam executadas como códigos.
+  + `%>%` para criar um comando no sentido de “e então”, ou seja, especificar que seja realizado o próximo passo do código em seguida. Dica: clicar `Ctrl + Shift + M`.
+  + `Ctrl + enter`, ou clicar no botão `Run`, para “rodar”, ou seja, executar o código programado/escrito.
+
+* Estatística:
+  + Variáveis numéricas: quantitativas, podem ser discretas (contagem, ex.: número de filhos) ou contínuas (mensuração, ex.: peso, altura)
+  + Variáveis categóricas: qualitativas, podem ser ordinais (quando há ordem, por exemplo, grau de instrução) ou nominais (classificação, por exemplo, sexo, raça)

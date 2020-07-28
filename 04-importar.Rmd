@@ -1,0 +1,105 @@
+# Importando bases de dados
+
+Utilizando o RStudio, pode-se abrir arquivos salvos no formato do próprio R (.RData) e de variados outros softwares, como Excel(.xlsx), SPSS (.sav) e Stata (.dta), e em diversos outros formatos, incluindo texto e csv.
+
+Há duas formas de abrir arquivos de dados no RStudio:
+
+* Com o uso do painel "Environment", ou
+* Com o uso de linhas de comando escritas diretamente no Console ou em um script
+
+## Com o uso das ferramentas da aba "Environment"
+
+Por essa forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.
+
+### Arquivos em formato R
+
+Para arquivos formato R (formato `.RData`):
+
+- Na aba "Environment", clique sobre o icone "Abrir Arquivos".  
+- Procure o seu arquivo nos locais do seu computador.  
+- Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.  
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+### Arquivos em outros formatos
+
+Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca haven, da gramática Tidyverse (veja em [bibliotecas](#biblio)).
+
+* Clique sobre o icone Import Dataset.
+* Escolha e clique sobre o formato em que o seu arquivo foi previamente salvo.
+* Clique em Browse.
+* Procure o seu arquivo nos locais do seu computador.
+* Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+## Com o uso de linhas de comando
+
+### Arquivos em formato R
+
+Para carregar arquivos no formato nativo do R usando linhas de comando:
+
+* Abra um novo script R e digite: `load("nome_do_arquivo.rdata")`.  
+  + Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar esses locais.  
+* Clique no arquivo que você quer importar  
+* Digite Control + Enter, ou clique em Run (disponível na aba superior do Source Code do seu R).  
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+### Arquivos em outros formatos
+
+Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca `haven` da gramática Tidyverse (veja em [bibliotecas](#biblio)).  
+  
+Cada tipo de arquivo tem um comando específico na biblioteca `haven`:  
+  
+Arquivos SPSS: função `read_sav()`  
+Arquivos Excel: função `read_csv()`  
+Arquivos Stata: função `read_dta()`  
+Arquivos SAS: função `read_sas()`  
+  
+Para que a base se transforme em um objeto no Environment do R, é preciso que se atribua um nome a ele. Veja este exemplo com a extensão do SPSS (arquivos em formato .sav):  
+
+```{r readhaven, eval = FALSE}
+# carregar a biblioteca haven
+library(haven)
+
+# abrir usando a função e criar um objeto no ambiente R
+base_do_wvs <- read_sav("diretório_do_projeto/nome_do_arquivo.sav")
+
+```
+
+Como dito na dica anteriormente, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.
+
+* Tecle Control + Enter, ou  
+* Clique em Run (disponível na aba superior do Source Code do seu R).  
+  
+Pronto! O seu arquivo vai aparecer no Environment.
+  
+Com outras extensões você usará, por exemplo, `read_cvs()` ou `read_dta()`. Para mais informações acesse a [ajuda da bibliteca haven](https://haven.tidyverse.org/)
+  
+
+## Gerando um dicionário de variáveis
+
+Para navegar na base de dados recém importada e reconhecer as variáveis importadas e suas características, existem diversas ferramentas disponíveis.   
+
+Uma delas é o pacote `codebook`, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba "Preview" e também na forma de um objeto que pode ser visualizado como uma tabela.  
+ 
+Para carregar a biblioteca codebook e gerar um dicionário de variáveis estático navegável na aba "Preview", gerar uma tabela e visualisá-la use os comandos abaixo:  
+ 
+```{r codebook, eval=FALSE}
+
+# carregar a biblioteca codebook
+library(codebook)
+
+# gerar um dicionário de variáveis estático navegável na aba "Preview"
+label_browser_static(base_do_wvs)
+
+# gerar uma tabela com todas as variávis
+dicionario <- codebook_table(base_do_wvs)
+
+# visualizar na forma de tabela junto aos scripts R
+view(dicionario)
+
+```
+
+Feita a importação da base de dados e com o dicionário em mãos, podemos passar a descrição, análise e visualização dos dados.  

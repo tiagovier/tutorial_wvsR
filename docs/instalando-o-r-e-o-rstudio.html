@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-br" xml:lang="pt-br">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Instalando o R e o RStudio | Uso de R para análise dos dados da World Values Survey</title>
+  <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Instalando o R e o RStudio | Uso de R para análise dos dados da World Values Survey" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/capa.png" />
+  <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Instalando o R e o RStudio | Uso de R para análise dos dados da World Values Survey" />
+  
+  <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="twitter:image" content="img/capa.png" />
+
+<meta name="author" content="Tiago Vier, UFRGS" />
+<meta name="author" content="Daniel Capistrano, UCD" />
+<meta name="author" content="Jéssica Duarte, UFRGS" />
+<meta name="author" content="Luana Isabelle Beal, UFRGS" />
+<meta name="author" content="Carla Mendonça, ISCTE" />
+<meta name="author" content="Cristiana Verônica Mueller, UNISC" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="biblio.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-Vindo(a)!</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r-e-rstudio"><i class="fa fa-check"></i><b>1.1</b> R e RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#world-values-survey-wvs"><i class="fa fa-check"></i><b>1.2</b> World Values Survey (WVS)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html"><i class="fa fa-check"></i><b>2</b> Instalando o R e o RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#linux"><i class="fa fa-check"></i><b>2.1</b> LINUX</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#mac-os-x"><i class="fa fa-check"></i><b>2.2</b> Mac OS X</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-1"><i class="fa fa-check"></i><b>2.2.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>2.2.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#windows"><i class="fa fa-check"></i><b>2.3</b> Windows</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.3.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#identificando-o-rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.5</b> Criando um projeto no RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="biblio.html"><a href="biblio.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
+<li class="chapter" data-level="3.1" data-path="biblio.html"><a href="biblio.html#instalando-bibliotecas-adicionais"><i class="fa fa-check"></i><b>3.1</b> Instalando bibliotecas adicionais</a></li>
+<li class="chapter" data-level="3.2" data-path="biblio.html"><a href="biblio.html#carregando-bibliotecas"><i class="fa fa-check"></i><b>3.2</b> Carregando bibliotecas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html"><i class="fa fa-check"></i><b>4</b> Importando bases de dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#com-o-uso-das-ferramentas-da-aba-environment"><i class="fa fa-check"></i><b>4.1</b> Com o uso das ferramentas da aba “Environment”</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-formato-r"><i class="fa fa-check"></i><b>4.1.1</b> Arquivos em formato R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-outros-formatos"><i class="fa fa-check"></i><b>4.1.2</b> Arquivos em outros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#com-o-uso-de-linhas-de-comando"><i class="fa fa-check"></i><b>4.2</b> Com o uso de linhas de comando</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-formato-r-1"><i class="fa fa-check"></i><b>4.2.1</b> Arquivos em formato R</a></li>
+<li class="chapter" data-level="4.2.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-outros-formatos-1"><i class="fa fa-check"></i><b>4.2.2</b> Arquivos em outros formatos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#gerando-um-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.3</b> Gerando um dicionário de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html"><i class="fa fa-check"></i><b>5</b> Descrevendo e analisando os dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#descrevendo-os-dados"><i class="fa fa-check"></i><b>5.1</b> Descrevendo os dados</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#criar-variáveis-e-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Criar variáveis e vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#funções-básicas-e-comandos-úteis"><i class="fa fa-check"></i><b>5.1.2</b> Funções básicas e comandos úteis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#estatísticas-descritivas"><i class="fa fa-check"></i><b>5.2</b> Estatísticas descritivas</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#filtrar-e-selecionar"><i class="fa fa-check"></i><b>5.2.1</b> Filtrar e selecionar</a></li>
+<li class="chapter" data-level="5.2.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#criar-uma-variável"><i class="fa fa-check"></i><b>5.2.2</b> Criar uma variável</a></li>
+<li class="chapter" data-level="5.2.3" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#contar"><i class="fa fa-check"></i><b>5.2.3</b> Contar</a></li>
+<li class="chapter" data-level="5.2.4" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#sumarizar"><i class="fa fa-check"></i><b>5.2.4</b> Sumarizar</a></li>
+<li class="chapter" data-level="5.2.5" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#agrupar"><i class="fa fa-check"></i><b>5.2.5</b> Agrupar</a></li>
+<li class="chapter" data-level="5.2.6" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#fator-de-ponderação-peso"><i class="fa fa-check"></i><b>5.2.6</b> Fator de ponderação (peso)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#análises-bi-e-multivariadas"><i class="fa fa-check"></i><b>5.3</b> Análises bi e multivariadas</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#correlação"><i class="fa fa-check"></i><b>5.3.1</b> Correlação</a></li>
+<li class="chapter" data-level="5.3.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.3.2</b> Regressão linear múltipla</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualizar-os-dados.html"><a href="visualizar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizar os dados</a></li>
+<li class="chapter" data-level="7" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i><b>7</b> Glossário</a></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uso de R para análise dos dados da World Values Survey</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="instalando-o-r-e-o-rstudio" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Instalando o R e o RStudio</h1>
+<p>Para trabalhar com R, é necessário instalar dois softwares: R-base e RStudio. Para utilizar o RStudio, é necessário primeiro instalar o R-base.</p>
+<p>Siga os passos para instalação de acordo com o sistema operacional do seu computador.</p>
+<div id="linux" class="section level2">
+<h2><span class="header-section-number">2.1</span> LINUX</h2>
+<div id="instalar-o-r" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Instalar o R</h3>
+<ul>
+<li>Passo 1: Abra o terminal. Se utilizar distribuição Fedora, pressione as teclas Super + T, e no Ubuntu Ctrl + Alt + t;<br />
+</li>
+<li>Passo 2: Com o terminal aberto digite a seguinte linha de comando:
+<ul>
+<li>Fedora: <code>sudo dnf install R</code></li>
+<li>Ubuntu: <code>sudo apt-get install r-base r-base-core</code><br />
+</li>
+</ul></li>
+<li>Passo 3: Pressione a tecla Enter para confirmar;<br />
+</li>
+<li>Passo 4: Digite a senha do usuário;<br />
+</li>
+<li>Passo 5: Clique em Confirmar. Pronto! O R estará instalado e pode ser acessado.</li>
+</ul>
+<p>Link para eventual consulta: <a href="http://cran-r.c3sl.ufpr.br/bin/linux/">http://cran-r.c3sl.ufpr.br/bin/linux/</a></p>
+</div>
+<div id="instalar-o-rstudio" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Instalar o RStudio</h3>
+<ul>
+<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
+</li>
+<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
+</ul>
+<p><img src="img/inst_1_rstudio.png" width="488" /></p>
+<ul>
+<li>Passo 3: Encontre o sistema operacional do seu computador (Ubuntu, Fedora, Debian ou OpenSUSE) e faça download.<br />
+</li>
+<li>Passo 4: Acesse o terminal na pasta onde foi feito o download e siga as instruções abaixo usando Fedora ou Ubuntu:
+<ul>
+<li>Fedora: <code>sudo dnf install nomedo_arquivo_baixado.rpm</code>; Ex: <code>sudo dnf install rstudio-1.3.959-x86_64.rpm</code></li>
+<li>Ubuntu: <code>sudo dpkg -i nomedo_arquivo_baixado.deb</code><br />
+</li>
+</ul></li>
+<li>Passo 5: O RStudio está instalado e pronto para uso!</li>
+</ul>
+</div>
+</div>
+<div id="mac-os-x" class="section level2">
+<h2><span class="header-section-number">2.2</span> Mac OS X</h2>
+<div id="instalar-o-r-1" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Instalar o R</h3>
+<ul>
+<li>Passo 1: Abra o site <a href="https://cran.r-project.org/">CRAN - https://cran.r-project.org/</a></li>
+<li>Passo 2: Clique em “Download de R for (Mac) OS X”.<br />
+</li>
+<li>Passo 3: Clique duas vezes no arquivo depois de baixado. Pronto! O R está instalado.</li>
+</ul>
+</div>
+<div id="instalar-o-rstudio-1" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Instalar o RStudio</h3>
+<ul>
+<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
+</li>
+<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
+</ul>
+<p><img src="img/inst_1_rstudio.png" width="488" /></p>
+<ul>
+<li>Passo 3: Encontre o sistema operacional do seu computador (Mac OS) e faça download.<br />
+</li>
+<li>Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!</li>
+</ul>
+</div>
+</div>
+<div id="windows" class="section level2">
+<h2><span class="header-section-number">2.3</span> Windows</h2>
+<div id="instalar-o-r-2" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Instalar o R</h3>
+<ul>
+<li>Passo 1: Clique no seguinte link <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a><br />
+</li>
+<li>Passo 2: Clique em Download R for Windows (os números que aparecem nesse arquivo de download correspondem à versão do R disponível):</li>
+</ul>
+<p><img src="img/inst_1_rwindows.png" width="488" /></p>
+<ul>
+<li>Passo 3: Clique duas vezes no arquivo depois de baixado. Clique em Avançar até finalizar a instalação. Pronto! O R está instalado.</li>
+</ul>
+</div>
+<div id="instalar-o-rstudio-2" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Instalar o RStudio</h3>
+<ul>
+<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
+</li>
+<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
+</ul>
+<p><img src="img/inst_1_rstudio.png" width="488" /></p>
+<ul>
+<li>Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.</li>
+<li>Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!</li>
+</ul>
+</div>
+</div>
+<div id="identificando-o-rstudio" class="section level2">
+<h2><span class="header-section-number">2.4</span> Identificando o RStudio</h2>
+<p>O RStudio tem quatro interfaces, espaços distribuídos na sua tela, fáceis de identificar e de trabalhar.</p>
+<p>São elas:</p>
+<ul>
+<li>Source: local onde são inseridos os códigos-fonte. Fica no canto superior esquerdo.</li>
+<li>Console: também chamado de terminal, onde são mostrados os resultados dos comandos executados pelos códigos na Source. Fica no canto inferior esquerdo.</li>
+<li>Environment: também chamado de ambiente, onde são mostrados os elementos (por exemplo, vetores, bases de dados etc) que foram criados. Fica no canto superior direito.</li>
+<li>Viewer: também chamado files, onde são mostrados os arquivos, pacotes, pastas, entre outros. Fica no canto inferior direito.</li>
+</ul>
+<p><img src="img/cozinha.png" width="425" /></p>
+</div>
+<div id="criando-um-projeto-no-rstudio" class="section level2">
+<h2><span class="header-section-number">2.5</span> Criando um projeto no RStudio</h2>
+<p>Uma forma prática de iniciar o trabalho com o RStudio é criando projetos.</p>
+<p>Para iniciar um novo projeto:</p>
+<ul>
+<li>Acesse o menu “File &gt; New Project”, ou</li>
+<li>então o ícone <img src="img/proj_ico.png" /> na parte superior direita do RStudio.</li>
+</ul>
+<p>O RStudio vai perguntar se você quer criar um novo diretório para o projeto, usar um diretório existente, ou ainda clonar um repositório distante (GitHub, por exemplo).</p>
+<p>Para criar um novo diretório:</p>
+<ul>
+<li>Clique em “New Directory”, escolha entre as opções de tipos de projeto oferecidas e dê um nome ao seu novo diretório.</li>
+</ul>
+<p>Ali, você poderá salvar todos os documentos do projeto.</p>
+<p>Ao fechar o RStudio, todos os documentos e os objetos do ambiente serão salvos no projeto, e você pode retomar o trabalho de onde parou quando quiser.</p>
+<p>Lembre-se: as bibliotecas devem ser recarregadas cada vez que você iniciar uma seção do R.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="biblio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["tutorial_wvsR.pdf", "tutorial_wvsR.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true,
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

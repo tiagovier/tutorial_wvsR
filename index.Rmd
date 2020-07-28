@@ -1,9 +1,5 @@
 --- 
-title: "Uso de R para análise dos dados da World Values Survey"  
-   [![DOI](https://zenodo.org/badge/283239374.svg)](https://zenodo.org/badge/latestdoi/283239374)
-#title: |
-#  ![](img/wvs_logo.png)   
-#  Uso de R para análise dos dados da World Values Survey
+title: "Uso de R para análise dos dados da World Values Survey"
 author:
   - Tiago Vier, UFRGS
   - Daniel Capistrano, UCD
@@ -36,7 +32,7 @@ fig_height: 4
 knitr::include_graphics("img/capa.png", dpi = NA)
 ```
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3964456.svg)](https://doi.org/10.5281/zenodo.3964456)
+<a href="https://doi.org/10.5281/zenodo.3964456"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3964456.svg" alt="DOI"></a>
 
 Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises da World Values Survey (WVS), ou Pesquisa Mundial de Valores, em Português, sobre o uso da linguagem R e ambiente de programação RStudio.
 

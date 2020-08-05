@@ -19,7 +19,7 @@ papersize: a4
 geometry: "left=3cm,right=2cm,top=3cm,bottom=2cm"
 fig_width: 6 
 fig_height: 4
-favicon: "img/favicon-96x96.ico"
+favicon: "img/favicon-96x96.png"
 ---
 
 # Bem-Vindo(a)! {-}

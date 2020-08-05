@@ -78,7 +78,7 @@ knitr::include_graphics("img/inst_1_rstudio.png")
 * Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.
 * Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!
 
-## Identificando o RStudio
+## Identificando o RStudio {#rstudio}
 
 O RStudio tem quatro interfaces, espaços distribuídos na sua tela, fáceis de identificar e de trabalhar.
 
@@ -93,6 +93,7 @@ São elas:
 knitr::include_graphics("img/cozinha.png")
 ```
 
+O RStudio possui quatro interfaces, que são as “pequenas telas” ou “janelinhas” que aparecem ao iniciar o programa. Pensando em uma cozinha, o *Source* seria a receita, o passo-a-passo; o *Console* seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o *Environment* seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário com os utensílios de cozinha e ingredientes disponíveis (*Files*, *Packages*, ...).
 
 ## Criando um projeto no RStudio
 

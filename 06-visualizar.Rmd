@@ -1,4 +1,4 @@
-# Visualizar os dados
+# Visualizando os dados
 
 ```{r dados, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 load("~/Dropbox/04_Data/R/tiagovier.github.io/data/WVS_7.RData")

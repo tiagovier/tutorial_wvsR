@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | Uso de R para análise dos dados da World Values Survey</title>
+  <title>Capítulo 6 Visualizando os dados | Uso de R para análise dos dados da World Values Survey</title>
   <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | Uso de R para análise dos dados da World Values Survey" />
+  <meta property="og:title" content="Capítulo 6 Visualizando os dados | Uso de R para análise dos dados da World Values Survey" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/capa.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/tiagovier/tutorial_wvsR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | Uso de R para análise dos dados da World Values Survey" />
+  <meta name="twitter:title" content="Capítulo 6 Visualizando os dados | Uso de R para análise dos dados da World Values Survey" />
   
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="glossário.html"/>
-
+<link rel="prev" href="descrevendo-e-analisando-os-dados.html"/>
+<link rel="next" href="glossário.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -211,37 +211,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
+<div id="visualizando-os-dados" class="section level1">
+<h1><span class="header-section-number">Capítulo 6</span> Visualizando os dados</h1>
+<p>Para visualizar os dados, usamos a biblioteca <code>ggplot2()</code> também da gramática Tidyverse.</p>
+<p>Após organizar e manipular os dados e fazer análises descritivas, é uma boa estratégia apresentar as informações em gráficos para evidenciar padrões, tendências e comparações. Conforme visto anteriormente, a biblioteca para plotar gráficos é a <code>ggplot()</code>. A biblioteca <code>ggthemes()</code> permite aplicar alguns temas já pré-estabelecidos.</p>
+<p>O <code>ggplot()</code> é uma biblioteca que constrói os gráficos em camadas. Primeiramente, define-se a “folha” com uma base de dados que será usada; em seguida, a geometria e os demais parâmetros dos gráficos.</p>
+<p>O comando básico do ggplot() é: <code>ggplot(data = dados, aes(x = Explicativa, y = Resposta)) + geoma + ...</code></p>
+<p>Tipos de geometrias disponíveis:</p>
+<ul>
+<li>Histograma: <code>geom_hist()</code></li>
+<li>Barras: <code>geom_bar()</code></li>
+<li>Pontos: <code>geom_point()</code></li>
+<li>Diagrama de caixa (boxplot): <code>geom_boxplot()</code></li>
+<li>Linhas: <code>geom_line()</code></li>
+</ul>
+<p>O guia do <code>ggplot()</code> pode ser encontrado <a href="https://ggplot2.tidyverse.org/index.html">aqui</a>. Nesta <a href="https://www.r-graph-gallery.com/">galeria</a>, podem ser encontrados diversos exemplos de gráficos para se inspirar.</p>
+<p>Veja uns exemplos abaixo:</p>
+<p>Exemplo 1: plotar um gráfico de densidade da variável idade:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="visualizando-os-dados.html#cb20-1"></a><span class="co"># plotar um gráfico de densidade da variável idade</span></span>
+<span id="cb20-2"><a href="visualizando-os-dados.html#cb20-2"></a><span class="kw">ggplot</span>(df_wvs7, <span class="kw">aes</span>(<span class="dt">x =</span> X003)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() </span></code></pre></div>
+<p><img src="tutorial_wvsR_files/figure-html/densidade-1.png" width="672" /></p>
+<p>Exemplo 2: aqui, reproduzimos o mapa cultural de Inglehart e Welzel <span class="citation">(<a href="referências.html#ref-inglehart_modernization_2005" role="doc-biblioref">2005</a>)</span> para alguns países. Antes, é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="visualizando-os-dados.html#cb21-1"></a><span class="co"># Criar uma lista com os países que se quer analisar</span></span>
+<span id="cb21-2"><a href="visualizando-os-dados.html#cb21-2"></a><span class="co"># 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia</span></span>
+<span id="cb21-3"><a href="visualizando-os-dados.html#cb21-3"></a>paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">76</span>, <span class="dv">32</span>, <span class="dv">152</span>, <span class="dv">170</span>)  </span>
+<span id="cb21-4"><a href="visualizando-os-dados.html#cb21-4"></a></span>
+<span id="cb21-5"><a href="visualizando-os-dados.html#cb21-5"></a><span class="co"># Extrair e retrabalhar as variáveis que precisamos</span></span>
+<span id="cb21-6"><a href="visualizando-os-dados.html#cb21-6"></a><span class="co"># select() para selecionar as variáveis de interesse</span></span>
+<span id="cb21-7"><a href="visualizando-os-dados.html#cb21-7"></a><span class="co"># filter() para filtrar usando o vetor &#39;países&#39; criado acima</span></span>
+<span id="cb21-8"><a href="visualizando-os-dados.html#cb21-8"></a><span class="co"># group_by() para agrupar por onda-país, onda e país</span></span>
+<span id="cb21-9"><a href="visualizando-os-dados.html#cb21-9"></a><span class="co"># summarise() para agregar os dados pela média</span></span>
+<span id="cb21-10"><a href="visualizando-os-dados.html#cb21-10"></a>df_y001 &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span></span>
+<span id="cb21-11"><a href="visualizando-os-dados.html#cb21-11"></a><span class="st">  </span><span class="kw">select</span>(S024, S020, S003, tradrat5, survself) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-12"><a href="visualizando-os-dados.html#cb21-12"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">%in%</span><span class="st"> </span>paises) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-13"><a href="visualizando-os-dados.html#cb21-13"></a><span class="st">  </span><span class="kw">group_by</span>(S024, S020, S003) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-14"><a href="visualizando-os-dados.html#cb21-14"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tradrat5 =</span> <span class="kw">mean</span>(tradrat5, <span class="dt">na.rm =</span> T),</span>
+<span id="cb21-15"><a href="visualizando-os-dados.html#cb21-15"></a>            <span class="dt">survself =</span> <span class="kw">mean</span>(survself, <span class="dt">na.rm =</span> T)) </span></code></pre></div>
+<p>Feito isso podemos criar a figura:</p>
+<p>Lembre-se que o <code>ggplot</code> usa o símbolo <code>+</code> para adicionar cada um dos elementos da figura.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="visualizando-os-dados.html#cb22-1"></a><span class="co"># lembre se de carregar a variável ggplot se ela não tiver sido carregada </span></span>
+<span id="cb22-2"><a href="visualizando-os-dados.html#cb22-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb22-3"><a href="visualizando-os-dados.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="visualizando-os-dados.html#cb22-4"></a><span class="co"># Reproduzir o Mapa Cultural Inglehart</span></span>
+<span id="cb22-5"><a href="visualizando-os-dados.html#cb22-5"></a></span>
+<span id="cb22-6"><a href="visualizando-os-dados.html#cb22-6"></a><span class="kw">ggplot</span>(df_y001, <span class="kw">aes</span>(<span class="dt">x =</span> survself, </span>
+<span id="cb22-7"><a href="visualizando-os-dados.html#cb22-7"></a>                    <span class="dt">y =</span> tradrat5, </span>
+<span id="cb22-8"><a href="visualizando-os-dados.html#cb22-8"></a>                    <span class="dt">color =</span> <span class="kw">as.factor</span>(S003), </span>
+<span id="cb22-9"><a href="visualizando-os-dados.html#cb22-9"></a>                    <span class="dt">label =</span> <span class="kw">as.factor</span>(S003))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb22-10"><a href="visualizando-os-dados.html#cb22-10"></a><span class="st">  </span><span class="co"># definir os dados e as dimensões</span></span>
+<span id="cb22-11"><a href="visualizando-os-dados.html#cb22-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># geometria pontos</span></span>
+<span id="cb22-12"><a href="visualizando-os-dados.html#cb22-12"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">nudge_x =</span> <span class="fl">0.05</span>, <span class="dt">check_overlap =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="co"># rótulos dos pontos</span></span>
+<span id="cb22-13"><a href="visualizando-os-dados.html#cb22-13"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># restringe eixo x e y entre -2 e 2</span></span>
+<span id="cb22-14"><a href="visualizando-os-dados.html#cb22-14"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb22-15"><a href="visualizando-os-dados.html#cb22-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;sobrevivencia-autoexpressão&quot;</span>,</span>
+<span id="cb22-16"><a href="visualizando-os-dados.html#cb22-16"></a>       <span class="dt">y =</span> <span class="st">&quot;tradicional-racional&quot;</span>,</span>
+<span id="cb22-17"><a href="visualizando-os-dados.html#cb22-17"></a>       <span class="dt">title =</span> <span class="st">&quot;Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)&quot;</span>) <span class="co"># rótulos do gráfico x, y e título</span></span></code></pre></div>
+<p><img src="tutorial_wvsR_files/figure-html/mapacultural-1.png" width="672" /></p>
 
-<div id="refs" class="references">
-<div id="ref-agresti_metodos_2012">
-<p>AGRESTI, Alan; FINLAY, Barbara; VIALI, Lori. <strong>Métodos Estatísticos para as Ciências Sociais</strong>. Tradução. Edição: 4 ed. Porto Alegre: Penso, 2012. </p>
-</div>
-<div id="ref-R-rmarkdown">
-<p>ALLAIRE, JJ <em>et al.</em> <strong>Rmarkdown: Dynamic documents for r</strong>.. <em>In</em>:., 2020. </p>
-</div>
-<div id="ref-castro_conteudo_2015">
-<p>CASTRO, Henrique C. de O. de; RANINCHESKI, Sonia; CAPISTRANO, Daniel. O Conteúdo Da Globalização Para Os Latino-Americanos: Uma Análise a Partir Da Pesquisa Mundial de ValoresWVS. <em>[S. l.]</em>, 2015. </p>
-</div>
-<div id="ref-inglehart_modernization_2005">
-<p>INGLEHART, Ronald; WELZEL, Christian. <strong>Modernization, Cultural Change, and Democracy: The Human Development Sequence</strong>. Tradução. Cambridge, UK ; New York: Cambridge University Press, 2005. </p>
-</div>
-<div id="ref-R-tidyverse">
-<p>WICKHAM, Hadley. <strong>Tidyverse: Easily install and load the ’tidyverse’</strong>.. <em>In</em>:., 2019. </p>
-</div>
-<div id="ref-R-bookdown">
-<p>XIE, Yihui. <strong>Bookdown: Authoring books and technical documents with r markdown</strong>.. <em>In</em>:., 2020. </p>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="glossário.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="descrevendo-e-analisando-os-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="glossário.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -13,7 +13,7 @@
   
   <meta property="og:image" content="img/capa.png" />
   <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
-  <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
+  <meta name="github-repo" content="https://github.com/tiagovier/tutorial_wvsR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 1 Introdução | Uso de R para análise dos dados da World Values Survey" />
@@ -21,12 +21,7 @@
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
 
-<meta name="author" content="Tiago Vier, UFRGS" />
-<meta name="author" content="Daniel Capistrano, UCD" />
-<meta name="author" content="Jéssica Duarte, UFRGS" />
-<meta name="author" content="Luana Isabelle Beal, UFRGS" />
-<meta name="author" content="Carla Mendonça, ISCTE" />
-<meta name="author" content="Cristiana Verônica Mueller, UNISC" />
+<meta name="author" content="Coletivo WVS-R Brasil" />
 
 
 
@@ -136,6 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
+<li><a href="https://doi.org/10.5281/zenodo.3964456"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3964456.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-Vindo(a)!</a></li>
@@ -156,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
 <li class="chapter" data-level="2.3.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#identificando-o-rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
 <li class="chapter" data-level="2.5" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.5</b> Criando um projeto no RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="biblio.html"><a href="biblio.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
@@ -192,11 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.3.2</b> Regressão linear múltipla</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="visualizar-os-dados.html"><a href="visualizar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizar os dados</a></li>
+<li class="chapter" data-level="6" data-path="visualizando-os-dados.html"><a href="visualizando-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizando os dados</a></li>
 <li class="chapter" data-level="7" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i><b>7</b> Glossário</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a></li>
 
 </ul>
 
@@ -227,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="world-values-survey-wvs" class="section level2">
 <h2><span class="header-section-number">1.2</span> World Values Survey (WVS)</h2>
 <p>A World Values Survey (WVS) investiga mudanças culturais em diversas sociedades e possibilita a comparação das características dessas mudanças, contribuindo, entre outros campos, para o debate sobre a relação entre desenvolvimento socio-econômico e mudanças culturais, para o acompanhamento longitudinal das mudanças em curso e para a ampliação do conhecimento de diferentes áreas do planeta – muitas delas eram antes de acesso limitado a determinadas regiões.</p>
-<p><img src="img/wvs_asso.jpg" /></p>
+<p><img src="img/wvs_asso.jpg" width="78" style="display: block; margin: auto;" /></p>
 <p>O embasamento teórico do WVS está associada à teoria da modernização e do pós-materialismo elaborada por Ronald Inglehart, que sugere que fenômenos como o crescimento do setor de serviços, a melhoria na qualidade de vida e o aumento das oportunidades educacionais nas sociedades industriais avançadas ou pós-industriais têm levado a uma gradual transformação nos valores e atitudes sociais.</p>
 <p>A pesquisa teve início em 1981 e consiste em inquéritos representativos em nível nacional realizados em quase cem países, abrangendo quase 90% da população mundial. Utiliza um questionário comum de 180 variáveis e inclui atualmente entrevistas com quase 400 mil indivíduos.</p>
 <p>A tese articula duas hipóteses para explicar essa mudança:</p>
@@ -236,19 +232,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><em>hipótese da socialização</em>: defende que grande parte dos valores básicos de um indivíduo derivam das condições presentes em seu período de formação, anterior à idade adulta.</li>
 </ol>
-<p>Dessa forma, o WVS se desenvolve a partir de um referencial teórico específico mas possibilita uma ampla gama de análises. A pesquisa utiliza como hipótese central que <em>“as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes<em>. Mas, ao mesmo tempo, </em>[…] esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário.”</em> <span class="citation">(CASTRO; RANINCHESKI; CAPISTRANO, <a href="#ref-castro_conteudo_2015" role="doc-biblioref">2015</a>)</span></p>
-<p><img src="img/wvs_logo.png" /></p>
-<p>O Brasil participou de cinco das sete ondas da WVS realizadas até agora (1990-1994; 1995-1999; 2005-2009; 2010-2014; e 2017-2020). O professor Henrique Castro coordena a pesquisa no país desde a quinta onda que foi baseada na Universidade de Brasília, entre 2005 e 2014, e a partir da Universidade Federal do Rio Grande do Sul (UFRGS), desde 2017, com financiamento da Capes/MEC.</p>
+<p>Dessa forma, o WVS se desenvolve a partir de um referencial teórico específico mas possibilita uma ampla gama de análises. A pesquisa utiliza como hipótese central que <em>“as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes<em>. Mas, ao mesmo tempo, </em>[…] esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário.”</em> <span class="citation">(CASTRO; RANINCHESKI; CAPISTRANO, <a href="referências.html#ref-castro_conteudo_2015" role="doc-biblioref">2015</a>)</span></p>
+<p><img src="img/wvs_logo.png" width="50" style="display: block; margin: auto;" /></p>
+<p>O Brasil participou de cinco das sete ondas da WVS realizadas até agora (1990-1994; 1995-1999; 2005-2009; 2010-2014; e 2017-2020). O professor Henrique Castro coordena a pesquisa no país desde a quinta onda, entre 2005 e 2014, vinculado à Universidade de Brasília, e, desde 2017, vinculado à Universidade Federal do Rio Grande do Sul (UFRGS), com financiamento da Capes/MEC.</p>
 <p>O WVS no Brasil utiliza uma amostra probabilística completa em três etapas: a) seleção aleatória e estabelecimento de 150 clusters (baseada nos setores censitários do país, incluindo zonas urbanas e rurais); b) seleção aleatória de habitações em cada setor censitário; e c) escolha do entrevistado na habitação, considerando que seja alfabetizado, tenha 16 anos ou mais de idade e data de aniversário mais próxima do dia da primeira visita bem-sucedida.</p>
 <p>Atualmente, o grupo de pesquisa WVS Brasil é integrado por discentes e docentes do Programa de Pós-Graduação em Ciência Política e discentes do Departamento de Economia e Relações Internacionais, ambos da UFRGS, e por pesquisadores de diversas universidades do Brasil, como Universidade de Brasília, Unisinos e Universidade de Caxias do Sul, e do Exterior, como a University College Dublin, integrando uma equipe de cerca de 60 pesquisadores.</p>
 <p>Os dados gerados por todos os países integrantes da WVS ficam disponíveis para livre acesso na internet, por meio da página <a href="www.worldvaluessurvey.org">www.worldvaluessurvey.org</a>.</p>
 
-</div>
-</div>
-<h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-castro_conteudo_2015">
-<p>CASTRO, Henrique C. de O. de; RANINCHESKI, Sonia; CAPISTRANO, Daniel. O Conteúdo Da Globalização Para Os Latino-Americanos: Uma Análise a Partir Da Pesquisa Mundial de ValoresWVS. <em>[S. l.]</em>, 2015. </p>
 </div>
 </div>
             </section>
@@ -299,7 +289,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["tutorial_wvsR.pdf", "tutorial_wvsR.epub"],
+"download": ["tutorial_wvsR.pdf"],
 "toc": {
 "collapse": "subsection"
 },

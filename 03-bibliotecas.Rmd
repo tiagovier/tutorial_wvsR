@@ -24,7 +24,7 @@ Para instalar a biblioteca tidyverse digite:
 
 ```{r instalar1, eval = FALSE}
 
-# para instalar as bibliotecas da tidyverse
+# instalar a biblioteca tidyverse
 install.packages("tidyverse")
 
 ```

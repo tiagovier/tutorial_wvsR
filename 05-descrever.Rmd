@@ -193,7 +193,7 @@ base_do_wvs %>%
 
 Na maioria das pesquisas de tipo *survey* existe uma variável que devemos utilizar para que os resultados das nossa operações sejam mais precisos. Nessas pesquisas, a amostra planejada nem sempre consegue ser executada perfeitamente, ou seja, nem todas as pessoas selecionadas na amostra são entrevistadas.  
 
-Para corrigir os possíveis viezes de participação decorrente disso, o WVS possui um fator de ponderação (peso/*weight*) que deve ser utilizado quando estamos produzindo estatísticas descritivas. Para isso, nós vamos incluir uma opção de peso (*wt* / *w*) assinalando a variável de peso do WVS: `S018`.
+Para corrigir os possíveis vieses de participação decorrente disso, o WVS possui um fator de ponderação (peso/*weight*) que deve ser utilizado quando estamos produzindo estatísticas descritivas. Para isso, nós vamos incluir uma opção de peso (*wt* / *w*) assinalando a variável de peso do WVS: `S018`.
 
 ```{r eval = FALSE}
 

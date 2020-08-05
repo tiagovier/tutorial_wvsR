@@ -1,3 +1,5 @@
 \usepackage{booktabs}
 \usepackage[brazil]{babel}
-
+\usepackage{pdfpages}
+\let\oldmaketitle\maketitle
+\AtBeginDocument{\let\maketitle\relax}

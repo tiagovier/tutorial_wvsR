@@ -6,7 +6,7 @@
   + Vetor: uma sequência ordenada de elementos. Importante notar que um vetor armazena apenas um tipo de informação, por exemplo, só números, o que se chama de unidimensional. Como se fosse uma caixinha com várias cartas (uma de fulano, outra de beltrano etc) ou uma caixinha com várias moedas (1 euro, 50 centavos de dólar, 25 centavos de real etc.), uma caixinha com diferentes lápis-de-cor (rosa, azul, verde), ou ainda uma caixinha com moedas e lápis-de-cor. `z <- c(1, 2, 3) #criar vetor z e atribuir os valores 1, 2 e 3`
   + Lista: é como um vetor avançado, pois também é uma sequência de elementos, mas pode guardar diferentes tipos de dados (números, letras etc), ou seja, é multidimensional. Assim, pode ser uma caixinha que guarda tudo junto: cartas, moedas e lápis-de-cor. `lista <- list(idade = 20, “oi”, 35, “tchau”) #criar "lista" e atribuir diferentes conteúdos`
 
-* Interfaces: o RStudio possui quatro interfaces, que são as “pequenas telas” ou “janelinhas” que aparecem ao iniciar o programa. Pensando em uma cozinha, o Source seria a receita, o passo-a-passo; o Console seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o Environment seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário, o Viewer, com os utensílios de cozinha e ingredientes disponíveis.
+* Interfaces: o RStudio possui quatro interfaces, que são as “pequenas telas” ou “janelinhas” que aparecem ao iniciar o programa (ver \@ref(rstudio)).
 
 * Funções: diferentes “verbos”, tanto do R-base quanto na gramática tidyverse. Realizam diferentes tipos de funções.
   + Count: conta quantas vezes aparece aquela variável, por exemplo, numa base de dados, e mostra seu valor. `count(x) #contar a quantidade da variável x`

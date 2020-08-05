@@ -13,7 +13,7 @@
   
   <meta property="og:image" content="img/capa.png" />
   <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
-  <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
+  <meta name="github-repo" content="https://github.com/tiagovier/tutorial_wvsR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Uso de R para análise dos dados da World Values Survey" />
@@ -21,12 +21,7 @@
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
 
-<meta name="author" content="Tiago Vier, UFRGS" />
-<meta name="author" content="Daniel Capistrano, UCD" />
-<meta name="author" content="Jéssica Duarte, UFRGS" />
-<meta name="author" content="Luana Isabelle Beal, UFRGS" />
-<meta name="author" content="Carla Mendonça, ISCTE" />
-<meta name="author" content="Cristiana Verônica Mueller, UNISC" />
+<meta name="author" content="Coletivo WVS-R Brasil" />
 
 
 
@@ -34,7 +29,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="img/favicon-96x96.ico" type="image/x-icon" />
 
 <link rel="next" href="intro.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -136,6 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
+<li><a href="https://doi.org/10.5281/zenodo.3964456"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3964456.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-Vindo(a)!</a></li>
@@ -156,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
 <li class="chapter" data-level="2.3.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#identificando-o-rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
 <li class="chapter" data-level="2.5" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.5</b> Criando um projeto no RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="biblio.html"><a href="biblio.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
@@ -192,11 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.3.2</b> Regressão linear múltipla</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="visualizar-os-dados.html"><a href="visualizar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizar os dados</a></li>
+<li class="chapter" data-level="6" data-path="visualizando-os-dados.html"><a href="visualizando-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizando os dados</a></li>
 <li class="chapter" data-level="7" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i><b>7</b> Glossário</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a></li>
 
 </ul>
 
@@ -217,32 +213,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Uso de R para análise dos dados da World Values Survey</h1>
-<p class="author"><em>Tiago Vier, UFRGS</em></p>
-<p class="author"><em>Daniel Capistrano, UCD</em></p>
-<p class="author"><em>Jéssica Duarte, UFRGS</em></p>
-<p class="author"><em>Luana Isabelle Beal, UFRGS</em></p>
-<p class="author"><em>Carla Mendonça, ISCTE</em></p>
-<p class="author"><em>Cristiana Verônica Mueller, UNISC</em></p>
-<p class="date"><em>Coletivo WVSR, última atualização em 28/07/2020</em></p>
+<p class="author"><em>Coletivo WVS-R Brasil</em></p>
+<p class="date"><em>Última atualização em 05/08/2020</em></p>
 </div>
 <div id="bem-vindoa" class="section level1 unnumbered">
 <h1>Bem-Vindo(a)!</h1>
-<p><a href="https://tiagovier.github.io/docs/" target="_blank"><img src="img/capa.png" style="display: block; margin: auto;" /></a></p>
-<p><a href="https://doi.org/10.5281/zenodo.3964456"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3964456.svg" alt="DOI"></a></p>
+<p><a href="https://tiagovier.github.io/tutorial_wvsR/" target="_blank"><img src="img/capa.png" style="display: block; margin: auto;" /></a></p>
 <p>Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises da World Values Survey (WVS), ou Pesquisa Mundial de Valores, em Português, sobre o uso da linguagem R e ambiente de programação RStudio.</p>
 <p>Trata-se de um documento evolutivo e introdutório ao uso dos softwares livres R e RStudio nas análises dos dados da base estruturada da WVS.</p>
-<p>Este tutorial foi preparado em <a href="https://rmarkdown.rstudio.com/">Rmarkdown</a> <span class="citation">(<a href="#ref-R-rmarkdown" role="doc-biblioref">2020</a>)</span> com a biblioteca <a href="https://bookdown.org/">bookdown</a> <span class="citation">(<a href="#ref-R-bookdown" role="doc-biblioref">2020</a>)</span>.</p>
-<p>Um agradecimento aos demais colaboradores do grupo do WVS Brasil.</p>
+<p><img src="img/cc-by-nc-sa-88x31.png" alt="creative commons by-nc-sa icon" /> <em><a href="https://tiagovier.github.io/tutorial_wvsR/">Esse tutorial</a> é resultado do primeiro curso de uso de R para análise de dados do <a href="http://www.worldvaluessurvey.org/">WVS</a> promovido pelo Coletivo WVS-R no Brasil. Se trata de um documento de acesso livre, e em construção produzido, distribuído livremente sob a licença <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>. Esse tutorial é um trabalho em andamento. A última atualização foi feita em: 05/08/2020</em></p>
+<p>A versão 1.0 desse tutorial tem como autores: Luana Isabelle Beal (UFRGS), Daniel Capistrano (UCD), Carla Etiene Mendonça da Silva (ISCTE), Jéssica da Silva Duarte (UFRGS), Cristiana Verônica Mueller (UNISC) e Tiago Vier (UFRGS). Um agradecimento aos demais colaboradores do grupo do WVS Brasil.</p>
+<p>Este tutorial foi preparado em <a href="https://rmarkdown.rstudio.com/">Rmarkdown</a> <span class="citation">(<a href="referências.html#ref-R-rmarkdown" role="doc-biblioref">2020</a>)</span> com a biblioteca <a href="https://bookdown.org/">bookdown</a> <span class="citation">(<a href="referências.html#ref-R-bookdown" role="doc-biblioref">2020</a>)</span>.</p>
 
-</div>
-<h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-R-rmarkdown">
-<p>ALLAIRE, JJ <em>et al.</em> <strong>Rmarkdown: Dynamic documents for r</strong>.. <em>In</em>:., 2020. </p>
-</div>
-<div id="ref-R-bookdown">
-<p>XIE, Yihui. <strong>Bookdown: Authoring books and technical documents with r markdown</strong>.. <em>In</em>:., 2020. </p>
-</div>
 </div>
             </section>
 
@@ -292,7 +274,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["tutorial_wvsR.pdf", "tutorial_wvsR.epub"],
+"download": ["tutorial_wvsR.pdf"],
 "toc": {
 "collapse": "subsection"
 },

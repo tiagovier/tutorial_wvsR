@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Instalando o R e o RStudio | Uso de R para análise dos dados da World Values Survey</title>
+  <title>Capítulo 6 Visualizando os dados | Uso de R para análise dos dados da World Values Survey</title>
   <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Instalando o R e o RStudio | Uso de R para análise dos dados da World Values Survey" />
+  <meta property="og:title" content="Capítulo 6 Visualizando os dados | Uso de R para análise dos dados da World Values Survey" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/capa.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/tiagovier/tutorial_wvsR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Instalando o R e o RStudio | Uso de R para análise dos dados da World Values Survey" />
+  <meta name="twitter:title" content="Capítulo 6 Visualizando os dados | Uso de R para análise dos dados da World Values Survey" />
   
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="img/favicon-96x96.ico" type="image/x-icon" />
-<link rel="prev" href="intro.html"/>
-<link rel="next" href="biblio.html"/>
+<link rel="prev" href="descrevendo-e-analisando-os-dados.html"/>
+<link rel="next" href="glossário.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -211,145 +211,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instalando-o-r-e-o-rstudio" class="section level1">
-<h1><span class="header-section-number">Capítulo 2</span> Instalando o R e o RStudio</h1>
-<p>Para trabalhar com R, é necessário instalar dois softwares: R-base e RStudio. Para utilizar o RStudio, é necessário primeiro instalar o R-base.</p>
-<p>Siga os passos para instalação de acordo com o sistema operacional do seu computador.</p>
-<div id="linux" class="section level2">
-<h2><span class="header-section-number">2.1</span> LINUX</h2>
-<div id="instalar-o-r" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Instalar o R</h3>
+<div id="visualizando-os-dados" class="section level1">
+<h1><span class="header-section-number">Capítulo 6</span> Visualizando os dados</h1>
+<p>Para visualizar os dados, usamos a biblioteca <code>ggplot2()</code> também da gramática Tidyverse.</p>
+<p>Após organizar e manipular os dados e fazer análises descritivas, é uma boa estratégia apresentar as informações em gráficos para evidenciar padrões, tendências e comparações. Conforme visto anteriormente, a biblioteca para plotar gráficos é a <code>ggplot()</code>. A biblioteca <code>ggthemes()</code> permite aplicar alguns temas já pré-estabelecidos.</p>
+<p>O <code>ggplot()</code> é uma biblioteca que constrói os gráficos em camadas. Primeiramente, define-se a “folha” com uma base de dados que será usada; em seguida, a geometria e os demais parâmetros dos gráficos.</p>
+<p>O comando básico do ggplot() é: <code>ggplot(data = dados, aes(x = Explicativa, y = Resposta)) + geoma + ...</code></p>
+<p>Tipos de geometrias disponíveis:</p>
 <ul>
-<li>Passo 1: Abra o terminal. Se utilizar distribuição Fedora, pressione as teclas Super + T, e no Ubuntu Ctrl + Alt + t;<br />
-</li>
-<li>Passo 2: Com o terminal aberto digite a seguinte linha de comando:
-<ul>
-<li>Fedora: <code>sudo dnf install R</code></li>
-<li>Ubuntu: <code>sudo apt-get install r-base r-base-core</code><br />
-</li>
-</ul></li>
-<li>Passo 3: Pressione a tecla Enter para confirmar;<br />
-</li>
-<li>Passo 4: Digite a senha do usuário;<br />
-</li>
-<li>Passo 5: Clique em Confirmar. Pronto! O R estará instalado e pode ser acessado.</li>
+<li>Histograma: <code>geom_hist()</code></li>
+<li>Barras: <code>geom_bar()</code></li>
+<li>Pontos: <code>geom_point()</code></li>
+<li>Diagrama de caixa (boxplot): <code>geom_boxplot()</code></li>
+<li>Linhas: <code>geom_line()</code></li>
 </ul>
-<p>Link para eventual consulta: <a href="http://cran-r.c3sl.ufpr.br/bin/linux/">http://cran-r.c3sl.ufpr.br/bin/linux/</a></p>
-</div>
-<div id="instalar-o-rstudio" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Instalar o RStudio</h3>
-<ul>
-<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
-</li>
-<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
-</ul>
-<p><img src="img/inst_1_rstudio.png" width="488" /></p>
-<ul>
-<li>Passo 3: Encontre o sistema operacional do seu computador (Ubuntu, Fedora, Debian ou OpenSUSE) e faça download.<br />
-</li>
-<li>Passo 4: Acesse o terminal na pasta onde foi feito o download e siga as instruções abaixo usando Fedora ou Ubuntu:
-<ul>
-<li>Fedora: <code>sudo dnf install nomedo_arquivo_baixado.rpm</code>; Ex: <code>sudo dnf install rstudio-1.3.959-x86_64.rpm</code></li>
-<li>Ubuntu: <code>sudo dpkg -i nomedo_arquivo_baixado.deb</code><br />
-</li>
-</ul></li>
-<li>Passo 5: O RStudio está instalado e pronto para uso!</li>
-</ul>
-</div>
-</div>
-<div id="mac-os-x" class="section level2">
-<h2><span class="header-section-number">2.2</span> Mac OS X</h2>
-<div id="instalar-o-r-1" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Instalar o R</h3>
-<ul>
-<li>Passo 1: Abra o site <a href="https://cran.r-project.org/">CRAN - https://cran.r-project.org/</a></li>
-<li>Passo 2: Clique em “Download de R for (Mac) OS X”.<br />
-</li>
-<li>Passo 3: Clique duas vezes no arquivo depois de baixado. Pronto! O R está instalado.</li>
-</ul>
-</div>
-<div id="instalar-o-rstudio-1" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Instalar o RStudio</h3>
-<ul>
-<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
-</li>
-<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
-</ul>
-<p><img src="img/inst_1_rstudio.png" width="488" /></p>
-<ul>
-<li>Passo 3: Encontre o sistema operacional do seu computador (Mac OS) e faça download.<br />
-</li>
-<li>Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!</li>
-</ul>
-</div>
-</div>
-<div id="windows" class="section level2">
-<h2><span class="header-section-number">2.3</span> Windows</h2>
-<div id="instalar-o-r-2" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Instalar o R</h3>
-<ul>
-<li>Passo 1: Clique no seguinte link <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a><br />
-</li>
-<li>Passo 2: Clique em Download R for Windows (os números que aparecem nesse arquivo de download correspondem à versão do R disponível):</li>
-</ul>
-<p><img src="img/inst_1_rwindows.png" width="488" /></p>
-<ul>
-<li>Passo 3: Clique duas vezes no arquivo depois de baixado. Clique em Avançar até finalizar a instalação. Pronto! O R está instalado.</li>
-</ul>
-</div>
-<div id="instalar-o-rstudio-2" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Instalar o RStudio</h3>
-<ul>
-<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
-</li>
-<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
-</ul>
-<p><img src="img/inst_1_rstudio.png" width="488" /></p>
-<ul>
-<li>Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.</li>
-<li>Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!</li>
-</ul>
-</div>
-</div>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">2.4</span> Identificando o RStudio</h2>
-<p>O RStudio tem quatro interfaces, espaços distribuídos na sua tela, fáceis de identificar e de trabalhar.</p>
-<p>São elas:</p>
-<ul>
-<li>Source: local onde são inseridos os códigos-fonte. Fica no canto superior esquerdo.</li>
-<li>Console: também chamado de terminal, onde são mostrados os resultados dos comandos executados pelos códigos na Source. Fica no canto inferior esquerdo.</li>
-<li>Environment: também chamado de ambiente, onde são mostrados os elementos (por exemplo, vetores, bases de dados etc) que foram criados. Fica no canto superior direito.</li>
-<li>Viewer: também chamado files, onde são mostrados os arquivos, pacotes, pastas, entre outros. Fica no canto inferior direito.</li>
-</ul>
-<p><img src="img/cozinha.png" width="425" /></p>
-<p>O RStudio possui quatro interfaces, que são as “pequenas telas” ou “janelinhas” que aparecem ao iniciar o programa. Pensando em uma cozinha, o <em>Source</em> seria a receita, o passo-a-passo; o <em>Console</em> seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o <em>Environment</em> seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário com os utensílios de cozinha e ingredientes disponíveis (<em>Files</em>, <em>Packages</em>, …).</p>
-</div>
-<div id="criando-um-projeto-no-rstudio" class="section level2">
-<h2><span class="header-section-number">2.5</span> Criando um projeto no RStudio</h2>
-<p>Uma forma prática de iniciar o trabalho com o RStudio é criando projetos.</p>
-<p>Para iniciar um novo projeto:</p>
-<ul>
-<li>Acesse o menu “File &gt; New Project”, ou</li>
-<li>então o ícone <img src="img/proj_ico.png" /> na parte superior direita do RStudio.</li>
-</ul>
-<p>O RStudio vai perguntar se você quer criar um novo diretório para o projeto, usar um diretório existente, ou ainda clonar um repositório distante (GitHub, por exemplo).</p>
-<p>Para criar um novo diretório:</p>
-<ul>
-<li>Clique em “New Directory”, escolha entre as opções de tipos de projeto oferecidas e dê um nome ao seu novo diretório.</li>
-</ul>
-<p>Ali, você poderá salvar todos os documentos do projeto.</p>
-<p>Ao fechar o RStudio, todos os documentos e os objetos do ambiente serão salvos no projeto, e você pode retomar o trabalho de onde parou quando quiser.</p>
-<p>Lembre-se: as bibliotecas devem ser recarregadas cada vez que você iniciar uma seção do R.</p>
+<p>O guia do <code>ggplot()</code> pode ser encontrado <a href="https://ggplot2.tidyverse.org/index.html">aqui</a>. Nesta <a href="https://www.r-graph-gallery.com/">galeria</a>, podem ser encontrados diversos exemplos de gráficos para se inspirar.</p>
+<p>Veja uns exemplos abaixo:</p>
+<p>Exemplo 1: plotar um gráfico de densidade da variável idade:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="visualizando-os-dados.html#cb20-1"></a><span class="co"># plotar um gráfico de densidade da variável idade</span></span>
+<span id="cb20-2"><a href="visualizando-os-dados.html#cb20-2"></a><span class="kw">ggplot</span>(df_wvs7, <span class="kw">aes</span>(<span class="dt">x =</span> X003)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() </span></code></pre></div>
+<p><img src="tutorial_wvsR_files/figure-html/densidade-1.png" width="672" /></p>
+<p>Exemplo 2: aqui, reproduzimos o mapa cultural de Inglehart e Welzel <span class="citation">(<a href="referências.html#ref-inglehart_modernization_2005" role="doc-biblioref">2005</a>)</span> para alguns países. Antes, é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="visualizando-os-dados.html#cb21-1"></a><span class="co"># Criar uma lista com os países que se quer analisar</span></span>
+<span id="cb21-2"><a href="visualizando-os-dados.html#cb21-2"></a><span class="co"># 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia</span></span>
+<span id="cb21-3"><a href="visualizando-os-dados.html#cb21-3"></a>paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">76</span>, <span class="dv">32</span>, <span class="dv">152</span>, <span class="dv">170</span>)  </span>
+<span id="cb21-4"><a href="visualizando-os-dados.html#cb21-4"></a></span>
+<span id="cb21-5"><a href="visualizando-os-dados.html#cb21-5"></a><span class="co"># Extrair e retrabalhar as variáveis que precisamos</span></span>
+<span id="cb21-6"><a href="visualizando-os-dados.html#cb21-6"></a><span class="co"># select() para selecionar as variáveis de interesse</span></span>
+<span id="cb21-7"><a href="visualizando-os-dados.html#cb21-7"></a><span class="co"># filter() para filtrar usando o vetor &#39;países&#39; criado acima</span></span>
+<span id="cb21-8"><a href="visualizando-os-dados.html#cb21-8"></a><span class="co"># group_by() para agrupar por onda-país, onda e país</span></span>
+<span id="cb21-9"><a href="visualizando-os-dados.html#cb21-9"></a><span class="co"># summarise() para agregar os dados pela média</span></span>
+<span id="cb21-10"><a href="visualizando-os-dados.html#cb21-10"></a>df_y001 &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span></span>
+<span id="cb21-11"><a href="visualizando-os-dados.html#cb21-11"></a><span class="st">  </span><span class="kw">select</span>(S024, S020, S003, tradrat5, survself) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-12"><a href="visualizando-os-dados.html#cb21-12"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">%in%</span><span class="st"> </span>paises) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-13"><a href="visualizando-os-dados.html#cb21-13"></a><span class="st">  </span><span class="kw">group_by</span>(S024, S020, S003) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-14"><a href="visualizando-os-dados.html#cb21-14"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tradrat5 =</span> <span class="kw">mean</span>(tradrat5, <span class="dt">na.rm =</span> T),</span>
+<span id="cb21-15"><a href="visualizando-os-dados.html#cb21-15"></a>            <span class="dt">survself =</span> <span class="kw">mean</span>(survself, <span class="dt">na.rm =</span> T)) </span></code></pre></div>
+<p>Feito isso podemos criar a figura:</p>
+<p>Lembre-se que o <code>ggplot</code> usa o símbolo <code>+</code> para adicionar cada um dos elementos da figura.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="visualizando-os-dados.html#cb22-1"></a><span class="co"># lembre se de carregar a variável ggplot se ela não tiver sido carregada </span></span>
+<span id="cb22-2"><a href="visualizando-os-dados.html#cb22-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb22-3"><a href="visualizando-os-dados.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="visualizando-os-dados.html#cb22-4"></a><span class="co"># Reproduzir o Mapa Cultural Inglehart</span></span>
+<span id="cb22-5"><a href="visualizando-os-dados.html#cb22-5"></a></span>
+<span id="cb22-6"><a href="visualizando-os-dados.html#cb22-6"></a><span class="kw">ggplot</span>(df_y001, <span class="kw">aes</span>(<span class="dt">x =</span> survself, </span>
+<span id="cb22-7"><a href="visualizando-os-dados.html#cb22-7"></a>                    <span class="dt">y =</span> tradrat5, </span>
+<span id="cb22-8"><a href="visualizando-os-dados.html#cb22-8"></a>                    <span class="dt">color =</span> <span class="kw">as.factor</span>(S003), </span>
+<span id="cb22-9"><a href="visualizando-os-dados.html#cb22-9"></a>                    <span class="dt">label =</span> <span class="kw">as.factor</span>(S003))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb22-10"><a href="visualizando-os-dados.html#cb22-10"></a><span class="st">  </span><span class="co"># definir os dados e as dimensões</span></span>
+<span id="cb22-11"><a href="visualizando-os-dados.html#cb22-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># geometria pontos</span></span>
+<span id="cb22-12"><a href="visualizando-os-dados.html#cb22-12"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">nudge_x =</span> <span class="fl">0.05</span>, <span class="dt">check_overlap =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="co"># rótulos dos pontos</span></span>
+<span id="cb22-13"><a href="visualizando-os-dados.html#cb22-13"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># restringe eixo x e y entre -2 e 2</span></span>
+<span id="cb22-14"><a href="visualizando-os-dados.html#cb22-14"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb22-15"><a href="visualizando-os-dados.html#cb22-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;sobrevivencia-autoexpressão&quot;</span>,</span>
+<span id="cb22-16"><a href="visualizando-os-dados.html#cb22-16"></a>       <span class="dt">y =</span> <span class="st">&quot;tradicional-racional&quot;</span>,</span>
+<span id="cb22-17"><a href="visualizando-os-dados.html#cb22-17"></a>       <span class="dt">title =</span> <span class="st">&quot;Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)&quot;</span>) <span class="co"># rótulos do gráfico x, y e título</span></span></code></pre></div>
+<p><img src="tutorial_wvsR_files/figure-html/mapacultural-1.png" width="672" /></p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="biblio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="descrevendo-e-analisando-os-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="glossário.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

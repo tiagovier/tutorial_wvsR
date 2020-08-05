@@ -13,7 +13,7 @@
   
   <meta property="og:image" content="img/capa.png" />
   <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
-  <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
+  <meta name="github-repo" content="https://github.com/tiagovier/tutorial_wvsR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 3 Bibliotecas | Uso de R para análise dos dados da World Values Survey" />
@@ -21,12 +21,7 @@
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
 
-<meta name="author" content="Tiago Vier, UFRGS" />
-<meta name="author" content="Daniel Capistrano, UCD" />
-<meta name="author" content="Jéssica Duarte, UFRGS" />
-<meta name="author" content="Luana Isabelle Beal, UFRGS" />
-<meta name="author" content="Carla Mendonça, ISCTE" />
-<meta name="author" content="Cristiana Verônica Mueller, UNISC" />
+<meta name="author" content="Coletivo WVS-R Brasil" />
 
 
 
@@ -34,7 +29,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="img/favicon-96x96.ico" type="image/x-icon" />
 <link rel="prev" href="instalando-o-r-e-o-rstudio.html"/>
 <link rel="next" href="importando-bases-de-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -136,6 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
+<li><a href="https://doi.org/10.5281/zenodo.3964456"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3964456.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-Vindo(a)!</a></li>
@@ -156,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
 <li class="chapter" data-level="2.3.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#identificando-o-rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
 <li class="chapter" data-level="2.5" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.5</b> Criando um projeto no RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="biblio.html"><a href="biblio.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
@@ -192,11 +188,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.3.2</b> Regressão linear múltipla</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="visualizar-os-dados.html"><a href="visualizar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizar os dados</a></li>
+<li class="chapter" data-level="6" data-path="visualizando-os-dados.html"><a href="visualizando-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizando os dados</a></li>
 <li class="chapter" data-level="7" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i><b>7</b> Glossário</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a></li>
 
 </ul>
 
@@ -220,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Quando instalamos o R, instalamos junto uma grande quantidade de comandos e funções. A lista de funções do R-base pode ser vista <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">aqui</a>.</p>
 <p>Para além desses recursos, o R dispõe de uma grande quantidade de bibliotecas (ou pacotes). No momento em que escrevemos este tutorial, a plataforma de contribuições <a href="https://cran.r-project.org/web/packages/">CRAN</a> lista 16,045 bibliotecas disponíveis. As diferentes contribuições são agrupadas por tópicos. É possível, por exemplo, conhecer os pacotes disponíveis para as <a href="https://cran.r-project.org/web/views/SocialSciences.html">Ciências Sociais</a>.</p>
 <p>Neste tutorial, utilizamos as funções do R-base e sugerimos bibliotecas adicionais que facilitam algumas operações e são suficientes para a maior parte das necessidades de um pesquisador interessado em analisar os dados do WVS.</p>
-<p>As bibliotecas que são usadas neste tutorial fazem parte do grupo de pacotes <a href="https://www.tidyverse.org/">tidyverse</a> <span class="citation">(<a href="#ref-R-tidyverse" role="doc-biblioref">2019</a>)</span>. Entre elas, estão os pacotes dplyr, haven e ggplot2. Mais detalhes sobre esse tema podem ser obtidos no livro acessível <a href="https://r4ds.had.co.nz/">neste link</a>. Além do <code>tidyverse</code>, usamos a biblioteca <code>codebook</code> para ter acesso ao metadados disponíveis nos arquivos de SPSS e Stata.</p>
+<p>As bibliotecas que são usadas neste tutorial fazem parte do grupo de pacotes <a href="https://www.tidyverse.org/">tidyverse</a> <span class="citation">(<a href="referências.html#ref-R-tidyverse" role="doc-biblioref">2019</a>)</span>. Entre elas, estão os pacotes dplyr, haven e ggplot2. Mais detalhes sobre esse tema podem ser obtidos no livro acessível <a href="https://r4ds.had.co.nz/">neste link</a>. Além do <code>tidyverse</code>, usamos a biblioteca <code>codebook</code> para ter acesso ao metadados disponíveis nos arquivos de SPSS e Stata.</p>
 <div id="instalando-bibliotecas-adicionais" class="section level2">
 <h2><span class="header-section-number">3.1</span> Instalando bibliotecas adicionais</h2>
 <p>Como mencionamos anteriormente, quando instalamos o R-base já instalamos uma série de funções e comandos.</p>
@@ -229,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Outra maneira de instalar novas bibliotecas é usar a aba “Packages”.</p>
 <p>Essa aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão “Install”.</p>
 <p>Para instalar a biblioteca tidyverse digite:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="biblio.html#cb1-1"></a><span class="co"># para instalar as bibliotecas da tidyverse</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="biblio.html#cb1-1"></a><span class="co"># instalar a biblioteca tidyverse</span></span>
 <span id="cb1-2"><a href="biblio.html#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Para instalar a biblioteca codebook de visualização de metadados (ver no capítulo seguinte) digite:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="biblio.html#cb2-1"></a><span class="co"># para instalar a biblioteca codebook para visualizar os metadados </span></span>
@@ -256,12 +252,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>É recomendado que as bibliotecas que serão usadas nas análises sejam indicadas no início do código R onde são feitas as análises. Dessa forma, qualquer pesquisador poderá identificar os requisitos necessários para reproduzir as suas análises.</p>
 <p>Uma vez carregadas as bibliotecas, nós podemos continuar para o próximo passo que é importar os dados que vamos analisar.</p>
 
-</div>
-</div>
-<h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-R-tidyverse">
-<p>WICKHAM, Hadley. <strong>Tidyverse: Easily install and load the ’tidyverse’</strong>.. <em>In</em>:., 2019. </p>
 </div>
 </div>
             </section>
@@ -312,7 +302,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["tutorial_wvsR.pdf", "tutorial_wvsR.epub"],
+"download": ["tutorial_wvsR.pdf"],
 "toc": {
 "collapse": "subsection"
 },

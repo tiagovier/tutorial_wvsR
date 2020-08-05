@@ -40,7 +40,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Uso de R para análise dos dados da World Values Survey},
-  pdfauthor={Tiago Vier, UFRGS; Daniel Capistrano, UCD; Jéssica Duarte, UFRGS; Luana Isabelle Beal, UFRGS; Carla Mendonça, ISCTE; Cristiana Verônica Mueller, UNISC},
+  pdfauthor={Coletivo WVS-R Brasil},
   pdflang={pt-br},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -114,6 +114,9 @@
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage[brazil]{babel}
+\usepackage{pdfpages}
+\let\oldmaketitle\maketitle
+\AtBeginDocument{\let\maketitle\relax}
 \ifxetex
   % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
   \usepackage{polyglossia}
@@ -125,10 +128,15 @@
 \bibliographystyle{plainnat}
 
 \title{Uso de R para análise dos dados da World Values Survey}
-\author{Tiago Vier, UFRGS \and Daniel Capistrano, UCD \and Jéssica Duarte, UFRGS \and Luana Isabelle Beal, UFRGS \and Carla Mendonça, ISCTE \and Cristiana Verônica Mueller, UNISC}
-\date{Coletivo WVSR, última atualização em 28/07/2020}
+\author{Coletivo WVS-R Brasil}
+\date{Última atualização em 05/08/2020}
 
 \begin{document}
+\maketitle
+
+\thispagestyle{empty}
+\includepdf{img/capa.pdf}
+\let\maketitle\oldmaketitle
 \maketitle
 
 {
@@ -143,9 +151,9 @@ Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises da W
 
 Trata-se de um documento evolutivo e introdutório ao uso dos softwares livres R e RStudio nas análises dos dados da base estruturada da WVS.
 
-Este tutorial foi preparado em \href{https://rmarkdown.rstudio.com/}{Rmarkdown} \citeyearpar{R-rmarkdown} com a biblioteca \href{https://bookdown.org/}{bookdown} \citeyearpar{R-bookdown}.
+A versão 1.0 desse tutorial tem como autores: Luana Isabelle Beal (UFRGS), Daniel Capistrano (UCD), Carla Etiene Mendonça da Silva (ISCTE), Jéssica da Silva Duarte (UFRGS), Cristiana Verônica Mueller (UNISC) e Tiago Vier (UFRGS). Um agradecimento aos demais colaboradores do grupo do WVS Brasil.
 
-Um agradecimento aos demais colaboradores do grupo do WVS Brasil.
+Este tutorial foi preparado em \href{https://rmarkdown.rstudio.com/}{Rmarkdown} \citeyearpar{R-rmarkdown} com a biblioteca \href{https://bookdown.org/}{bookdown} \citeyearpar{R-bookdown}.
 
 \hypertarget{intro}{%
 \chapter{Introdução}\label{intro}}
@@ -166,7 +174,7 @@ O que justifica seu uso nas Ciências Sociais? Existe um uso crescente de métod
 
 A World Values Survey (WVS) investiga mudanças culturais em diversas sociedades e possibilita a comparação das características dessas mudanças, contribuindo, entre outros campos, para o debate sobre a relação entre desenvolvimento socio-econômico e mudanças culturais, para o acompanhamento longitudinal das mudanças em curso e para a ampliação do conhecimento de diferentes áreas do planeta -- muitas delas eram antes de acesso limitado a determinadas regiões.
 
-\includegraphics{img/wvs_asso.jpg}
+\begin{center}\includegraphics[width=2.17in]{img/wvs_asso} \end{center}
 
 O embasamento teórico do WVS está associada à teoria da modernização e do pós-materialismo elaborada por Ronald Inglehart, que sugere que fenômenos como o crescimento do setor de serviços, a melhoria na qualidade de vida e o aumento das oportunidades educacionais nas sociedades industriais avançadas ou pós-industriais têm levado a uma gradual transformação nos valores e atitudes sociais.
 
@@ -185,9 +193,9 @@ A tese articula duas hipóteses para explicar essa mudança:
 
 Dessa forma, o WVS se desenvolve a partir de um referencial teórico específico mas possibilita uma ampla gama de análises. A pesquisa utiliza como hipótese central que \emph{``as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes\emph{. Mas, ao mesmo tempo, }{[}\ldots{]} esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário.''} \citep{castro_conteudo_2015}
 
-\includegraphics{img/wvs_logo.png}
+\begin{center}\includegraphics[width=1.39in]{img/wvs_logo} \end{center}
 
-O Brasil participou de cinco das sete ondas da WVS realizadas até agora (1990-1994; 1995-1999; 2005-2009; 2010-2014; e 2017-2020). O professor Henrique Castro coordena a pesquisa no país desde a quinta onda que foi baseada na Universidade de Brasília, entre 2005 e 2014, e a partir da Universidade Federal do Rio Grande do Sul (UFRGS), desde 2017, com financiamento da Capes/MEC.
+O Brasil participou de cinco das sete ondas da WVS realizadas até agora (1990-1994; 1995-1999; 2005-2009; 2010-2014; e 2017-2020). O professor Henrique Castro coordena a pesquisa no país desde a quinta onda, entre 2005 e 2014, vinculado à Universidade de Brasília, e, desde 2017, vinculado à Universidade Federal do Rio Grande do Sul (UFRGS), com financiamento da Capes/MEC.
 
 O WVS no Brasil utiliza uma amostra probabilística completa em três etapas: a) seleção aleatória e estabelecimento de 150 clusters (baseada nos setores censitários do país, incluindo zonas urbanas e rurais); b) seleção aleatória de habitações em cada setor censitário; e c) escolha do entrevistado na habitação, considerando que seja alfabetizado, tenha 16 anos ou mais de idade e data de aniversário mais próxima do dia da primeira visita bem-sucedida.
 
@@ -343,8 +351,8 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
   Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!
 \end{itemize}
 
-\hypertarget{identificando-o-rstudio}{%
-\section{Identificando o RStudio}\label{identificando-o-rstudio}}
+\hypertarget{rstudio}{%
+\section{Identificando o RStudio}\label{rstudio}}
 
 O RStudio tem quatro interfaces, espaços distribuídos na sua tela, fáceis de identificar e de trabalhar.
 
@@ -363,6 +371,8 @@ São elas:
 \end{itemize}
 
 \includegraphics[width=11.81in]{img/cozinha}
+
+O RStudio possui quatro interfaces, que são as ``pequenas telas'' ou ``janelinhas'' que aparecem ao iniciar o programa. Pensando em uma cozinha, o \emph{Source} seria a receita, o passo-a-passo; o \emph{Console} seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o \emph{Environment} seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário com os utensílios de cozinha e ingredientes disponíveis (\emph{Files}, \emph{Packages}, \ldots).
 
 \hypertarget{criando-um-projeto-no-rstudio}{%
 \section{Criando um projeto no RStudio}\label{criando-um-projeto-no-rstudio}}
@@ -423,7 +433,7 @@ Para instalar a biblioteca tidyverse digite:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# para instalar as bibliotecas da tidyverse}
+\CommentTok{# instalar a biblioteca tidyverse}
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -841,7 +851,7 @@ Para mostrar os resultados agrupados por uma variável específica, utilizamos o
 
 Na maioria das pesquisas de tipo \emph{survey} existe uma variável que devemos utilizar para que os resultados das nossa operações sejam mais precisos. Nessas pesquisas, a amostra planejada nem sempre consegue ser executada perfeitamente, ou seja, nem todas as pessoas selecionadas na amostra são entrevistadas.
 
-Para corrigir os possíveis viezes de participação decorrente disso, o WVS possui um fator de ponderação (peso/\emph{weight}) que deve ser utilizado quando estamos produzindo estatísticas descritivas. Para isso, nós vamos incluir uma opção de peso (\emph{wt} / \emph{w}) assinalando a variável de peso do WVS: \texttt{S018}.
+Para corrigir os possíveis vieses de participação decorrente disso, o WVS possui um fator de ponderação (peso/\emph{weight}) que deve ser utilizado quando estamos produzindo estatísticas descritivas. Para isso, nós vamos incluir uma opção de peso (\emph{wt} / \emph{w}) assinalando a variável de peso do WVS: \texttt{S018}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -929,8 +939,8 @@ Para verificar os coeficientes e estatísticas dos modelos de regressão gerados
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{visualizar-os-dados}{%
-\chapter{Visualizar os dados}\label{visualizar-os-dados}}
+\hypertarget{visualizando-os-dados}{%
+\chapter{Visualizando os dados}\label{visualizando-os-dados}}
 
 Para visualizar os dados, usamos a biblioteca \texttt{ggplot2()} também da gramática Tidyverse.
 
@@ -1040,7 +1050,7 @@ Lembre-se que o \texttt{ggplot} usa o símbolo \texttt{+} para adicionar cada um
     Lista: é como um vetor avançado, pois também é uma sequência de elementos, mas pode guardar diferentes tipos de dados (números, letras etc), ou seja, é multidimensional. Assim, pode ser uma caixinha que guarda tudo junto: cartas, moedas e lápis-de-cor. \texttt{lista\ \textless{}-\ list(idade\ =\ 20,\ “oi”,\ 35,\ “tchau”)\ \#criar\ "lista"\ e\ atribuir\ diferentes\ conteúdos}
   \end{itemize}
 \item
-  Interfaces: o RStudio possui quatro interfaces, que são as ``pequenas telas'' ou ``janelinhas'' que aparecem ao iniciar o programa. Pensando em uma cozinha, o Source seria a receita, o passo-a-passo; o Console seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o Environment seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário, o Viewer, com os utensílios de cozinha e ingredientes disponíveis.
+  Interfaces: o RStudio possui quatro interfaces, que são as ``pequenas telas'' ou ``janelinhas'' que aparecem ao iniciar o programa (ver \ref{rstudio}).
 \item
   Funções: diferentes ``verbos'', tanto do R-base quanto na gramática tidyverse. Realizam diferentes tipos de funções.
 
